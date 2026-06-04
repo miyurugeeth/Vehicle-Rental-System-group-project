@@ -7,17 +7,17 @@ namespace vehicle_rental
 {
     public static class DatabaseHelper
     {
-        // ඩේටාබේස් ෆයිල් එක තියෙන තැන (Relative Path)
-        // '|DataDirectory|' පාවිච්චි කරාම හැමෝගෙම ලැප් වල පාත් එක ඔටෝම හැදෙනවා
+        // Location of the database file (Relative Path)
+        // '|DataDirectory|' When used, the path is automatically created on everyone's lap.
         private static string connectionString = @"Data Source=|DataDirectory|\Database\vehicle_rental.db;Version=3;";
 
-        // 1. ඩේටාබේස් එක කනෙක්ට් කරලා විවෘත කරන Function එක
+        // 1. The function that connects and opens the database
         public static SQLiteConnection GetConnection()
         {
             return new SQLiteConnection(connectionString);
         }
 
-        // 2. ඩේටා ඇතුළත් කරන්න, අප්ඩේට් කරන්න සහ මකන්න පොදු Function එක (Insert, Update, Delete)
+        // 2. Common functions for inserting, updating, and deleting data (Insert, Update, Delete)
         public static int ExecuteNonQuery(string query, SQLiteParameter[] parameters = null)
         {
             using (SQLiteConnection con = GetConnection())
@@ -31,7 +31,7 @@ namespace vehicle_rental
                         {
                             cmd.Parameters.AddRange(parameters);
                         }
-                        return cmd.ExecuteNonQuery(); // බලපෑමක් වුණු පේළි ගණන රිටන් කරයි
+                        return cmd.ExecuteNonQuery(); 
                     }
                 }
                 catch (Exception ex)
@@ -42,7 +42,7 @@ namespace vehicle_rental
             }
         }
 
-        // 3. ඩේටාබේස් එකෙන් ඩේටා කියවලා GridView එකකට හෝ ෆෝම් එකකට ගන්න පොදු Function එක (Select)
+        // 3. Common Function (Select) to read data from the database and get it into a GridView or a form
         public static DataTable ExecuteQuery(string query, SQLiteParameter[] parameters = null)
         {
             DataTable dt = new DataTable();
@@ -68,7 +68,7 @@ namespace vehicle_rental
                     MessageBox.Show("Database Error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
-            return dt; // දත්ත ටික Table එකක් විදිහට රිටන් කරයි
+            return dt; // Returns the data as a table
         }
     }
 }
