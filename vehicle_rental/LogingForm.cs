@@ -65,6 +65,10 @@ namespace vehicle_rental
                 {
                     MessageBox.Show("Login Successful!", "Welcome", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
+                    MainForm mainDashboard = new MainForm();
+                    mainDashboard.Show(); // ඩෑෂ්බෝඩ් එක පෙන්වනවා
+
+                    this.Hide(); // Login Form එක හංගනවා
                     // -------------------------------------------------------------
                     // 6. Next, open the Dashboard Form here
                     // -------------------------------------------------------------
@@ -81,6 +85,21 @@ namespace vehicle_rental
             {
                 MessageBox.Show("An error occurred: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label8_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
