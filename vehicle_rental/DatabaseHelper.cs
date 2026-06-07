@@ -8,7 +8,7 @@ namespace vehicle_rental
     public static class DatabaseHelper
     {
         // Location of the database file (Relative Path)
-        private static string connectionString = @"Data Source=|DataDirectory|\Database\vehicle_rental.db;Version=3;";
+        private static string connectionString = @"Data Source=D:\Vehicle-Rental-System-group-project\vehicle_rental\Database\vehicle_rental.db;Version=3;";
 
         // 1. The function that connects and opens the database
         public static SQLiteConnection GetConnection()
@@ -70,9 +70,6 @@ namespace vehicle_rental
             return dt;
         }
 
-        // ==========================================
-        // 🔥 DASHBOARD CARDS FUNCTIONS (අලුතින් එකතු කල ටික)
-        // ==========================================
 
         // A. මුළු වාහන ගණන (Total Vehicles)
         public static int GetTotalVehiclesCount()
@@ -198,6 +195,27 @@ namespace vehicle_rental
                 }
             }
             return dt;
+        }
+        public static DataTable GetData(string query)
+        {
+            using (SQLiteConnection conn = new SQLiteConnection(connectionString))
+            {
+                DataTable dt = new DataTable();
+                SQLiteDataAdapter da = new SQLiteDataAdapter(query, conn);
+                da.Fill(dt);
+                return dt;
+            }
+        }
+
+        // 2. INSERT/UPDATE/DELETE query සඳහා ExecuteQuery Method එක
+        public static void ExecuteQuery(string query)
+        {
+            using (SQLiteConnection conn = new SQLiteConnection(connectionString))
+            {
+                conn.Open();
+                SQLiteCommand cmd = new SQLiteCommand(query, conn);
+                cmd.ExecuteNonQuery();
+            }
         }
     }
 }

@@ -123,11 +123,11 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UC_DashboardOverview.cs">
+    <Compile Include="UC_VehicleFleetDashboard.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UC_DashboardOverview.Designer.cs">
-      <DependentUpon>UC_DashboardOverview.cs</DependentUpon>
+    <Compile Include="UC_VehicleFleetDashboard.Designer.cs">
+      <DependentUpon>UC_VehicleFleetDashboard.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="LogingForm.resx">
       <DependentUpon>LogingForm.cs</DependentUpon>
@@ -145,12 +145,10 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="UC_DashboardOverview.resx">
-      <DependentUpon>UC_DashboardOverview.cs</DependentUpon>
+    <EmbeddedResource Include="UC_VehicleFleetDashboard.resx">
+      <DependentUpon>UC_VehicleFleetDashboard.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="Database\vehicle_rental.db">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
+    <Content Include="Database\vehicle_rental.db" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -179,6 +177,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\istockphoto-2259151401-170x170.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\download %281%29.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
