@@ -65,6 +65,13 @@ namespace vehicle_rental
                 {
                     MessageBox.Show("Login Successful!", "Welcome", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
+<<<<<<< Updated upstream
+=======
+                    Dashboard mainDashboard = new Dashboard();
+                    mainDashboard.Show(); // ඩෑෂ්බෝඩ් එක පෙන්වනවා
+
+                    this.Hide(); // Login Form එක හංගනවා
+>>>>>>> Stashed changes
                     // -------------------------------------------------------------
                     // 6. Next, open the Dashboard Form here
                     // -------------------------------------------------------------

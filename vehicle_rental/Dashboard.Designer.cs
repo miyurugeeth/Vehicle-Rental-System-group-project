@@ -28,9 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
+<<<<<<< Updated upstream
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea6 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Legend legend6 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataVisualization.Charting.Series series6 = new System.Windows.Forms.DataVisualization.Charting.Series();
+=======
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea9 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend9 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series9 = new System.Windows.Forms.DataVisualization.Charting.Series();
+>>>>>>> Stashed changes
             this.panel1 = new System.Windows.Forms.Panel();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
@@ -55,7 +61,10 @@
             this.panel10 = new System.Windows.Forms.Panel();
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
+<<<<<<< Updated upstream
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+=======
+>>>>>>> Stashed changes
             this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.panel11 = new System.Windows.Forms.Panel();
             this.label10 = new System.Windows.Forms.Label();
@@ -68,6 +77,12 @@
             this.label15 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
+<<<<<<< Updated upstream
+=======
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.label18 = new System.Windows.Forms.Label();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+>>>>>>> Stashed changes
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -78,11 +93,18 @@
             this.panel8.SuspendLayout();
             this.panel9.SuspendLayout();
             this.panel10.SuspendLayout();
+<<<<<<< Updated upstream
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+=======
+>>>>>>> Stashed changes
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             this.panel11.SuspendLayout();
             this.panel12.SuspendLayout();
             this.panel13.SuspendLayout();
+<<<<<<< Updated upstream
+=======
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+>>>>>>> Stashed changes
             this.SuspendLayout();
             // 
             // panel1
@@ -288,6 +310,10 @@
             // panel8
             // 
             this.panel8.BackColor = System.Drawing.Color.White;
+<<<<<<< Updated upstream
+=======
+            this.panel8.Controls.Add(this.label18);
+>>>>>>> Stashed changes
             this.panel8.Controls.Add(this.label7);
             this.panel8.Location = new System.Drawing.Point(1029, 94);
             this.panel8.Name = "panel8";
@@ -307,6 +333,10 @@
             // panel9
             // 
             this.panel9.BackColor = System.Drawing.Color.White;
+<<<<<<< Updated upstream
+=======
+            this.panel9.Controls.Add(this.comboBox1);
+>>>>>>> Stashed changes
             this.panel9.Controls.Add(this.label8);
             this.panel9.Location = new System.Drawing.Point(14, 205);
             this.panel9.Name = "panel9";
@@ -327,7 +357,11 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+<<<<<<< Updated upstream
             this.label8.Location = new System.Drawing.Point(3, 7);
+=======
+            this.label8.Location = new System.Drawing.Point(20, 7);
+>>>>>>> Stashed changes
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(132, 22);
             this.label8.TabIndex = 9;
@@ -337,12 +371,17 @@
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+<<<<<<< Updated upstream
             this.label9.Location = new System.Drawing.Point(3, 9);
+=======
+            this.label9.Location = new System.Drawing.Point(13, 3);
+>>>>>>> Stashed changes
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(139, 22);
             this.label9.TabIndex = 10;
             this.label9.Text = "Vehicle Status";
             // 
+<<<<<<< Updated upstream
             // pictureBox1
             // 
             this.pictureBox1.Image = global::vehicle_rental.Properties.Resources.ChatGPT_Image_Jun_4__2026__03_44_20_AM;
@@ -366,6 +405,22 @@
             series6.Legend = "Legend1";
             series6.Name = "Series1";
             this.chart1.Series.Add(series6);
+=======
+            // chart1
+            // 
+            chartArea9.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea9);
+            legend9.Name = "Legend1";
+            this.chart1.Legends.Add(legend9);
+            this.chart1.Location = new System.Drawing.Point(183, 3);
+            this.chart1.Name = "chart1";
+            this.chart1.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.None;
+            series9.ChartArea = "ChartArea1";
+            series9.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
+            series9.Legend = "Legend1";
+            series9.Name = "Series1";
+            this.chart1.Series.Add(series9);
+>>>>>>> Stashed changes
             this.chart1.Size = new System.Drawing.Size(371, 228);
             this.chart1.TabIndex = 11;
             this.chart1.Text = "chart1";
@@ -383,7 +438,11 @@
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+<<<<<<< Updated upstream
             this.label10.Location = new System.Drawing.Point(3, 7);
+=======
+            this.label10.Location = new System.Drawing.Point(18, 7);
+>>>>>>> Stashed changes
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(249, 22);
             this.label10.TabIndex = 9;
@@ -402,7 +461,11 @@
             // 
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+<<<<<<< Updated upstream
             this.label11.Location = new System.Drawing.Point(3, 7);
+=======
+            this.label11.Location = new System.Drawing.Point(18, 10);
+>>>>>>> Stashed changes
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(140, 22);
             this.label11.TabIndex = 9;
@@ -454,9 +517,15 @@
             this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label15.Location = new System.Drawing.Point(65, 21);
             this.label15.Name = "label15";
+<<<<<<< Updated upstream
             this.label15.Size = new System.Drawing.Size(31, 32);
             this.label15.TabIndex = 3;
             this.label15.Text = "3";
+=======
+            this.label15.Size = new System.Drawing.Size(0, 32);
+            this.label15.TabIndex = 3;
+            this.label15.Click += new System.EventHandler(this.label15_Click);
+>>>>>>> Stashed changes
             // 
             // label16
             // 
@@ -464,9 +533,15 @@
             this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label16.Location = new System.Drawing.Point(83, 21);
             this.label16.Name = "label16";
+<<<<<<< Updated upstream
             this.label16.Size = new System.Drawing.Size(31, 32);
             this.label16.TabIndex = 4;
             this.label16.Text = "4";
+=======
+            this.label16.Size = new System.Drawing.Size(0, 32);
+            this.label16.TabIndex = 4;
+            this.label16.Click += new System.EventHandler(this.label16_Click);
+>>>>>>> Stashed changes
             // 
             // label17
             // 
@@ -474,9 +549,44 @@
             this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label17.Location = new System.Drawing.Point(66, 21);
             this.label17.Name = "label17";
+<<<<<<< Updated upstream
             this.label17.Size = new System.Drawing.Size(31, 32);
             this.label17.TabIndex = 5;
             this.label17.Text = "5";
+=======
+            this.label17.Size = new System.Drawing.Size(0, 32);
+            this.label17.TabIndex = 5;
+            this.label17.Click += new System.EventHandler(this.label17_Click);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::vehicle_rental.Properties.Resources.ChatGPT_Image_Jun_4__2026__03_44_20_AM;
+            this.pictureBox1.Location = new System.Drawing.Point(11, 11);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(121, 83);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 6;
+            this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label18.Location = new System.Drawing.Point(79, 21);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(31, 32);
+            this.label18.TabIndex = 6;
+            this.label18.Text = "6";
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(17, 48);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(121, 24);
+            this.comboBox1.TabIndex = 10;
+>>>>>>> Stashed changes
             // 
             // Dashboard
             // 
@@ -506,7 +616,10 @@
             this.panel9.PerformLayout();
             this.panel10.ResumeLayout(false);
             this.panel10.PerformLayout();
+<<<<<<< Updated upstream
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+=======
+>>>>>>> Stashed changes
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
             this.panel11.ResumeLayout(false);
             this.panel11.PerformLayout();
@@ -514,6 +627,10 @@
             this.panel12.PerformLayout();
             this.panel13.ResumeLayout(false);
             this.panel13.PerformLayout();
+<<<<<<< Updated upstream
+=======
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+>>>>>>> Stashed changes
             this.ResumeLayout(false);
 
         }
@@ -557,5 +674,10 @@
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Label label15;
+<<<<<<< Updated upstream
+=======
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.ComboBox comboBox1;
+>>>>>>> Stashed changes
     }
 }
