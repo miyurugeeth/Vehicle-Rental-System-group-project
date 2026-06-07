@@ -19,7 +19,7 @@ namespace vehicle_rental.Properties {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "18.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class Resources {
@@ -63,6 +63,26 @@ namespace vehicle_rental.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap _3d_car_interior_C0J809 {
+            get {
+                object obj = ResourceManager.GetObject("3d-car-interior-C0J809", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap _61dirMtdhBL__AC_SX450_ {
+            get {
+                object obj = ResourceManager.GetObject("61dirMtdhBL._AC_SX450_", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap ChatGPT_Image_Jun_4__2026__03_44_20_AM {
             get {
                 object obj = ResourceManager.GetObject("ChatGPT Image Jun 4, 2026, 03_44_20 AM", resourceCulture);
@@ -93,6 +113,16 @@ namespace vehicle_rental.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Gemini_Generated_Image_c0lqsc0lqsc0lqsc {
+            get {
+                object obj = ResourceManager.GetObject("Gemini_Generated_Image_c0lqsc0lqsc0lqsc", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap images {
             get {
                 object obj = ResourceManager.GetObject("images", resourceCulture);
@@ -106,6 +136,16 @@ namespace vehicle_rental.Properties {
         internal static System.Drawing.Bitmap istockphoto_2259151401_170x170 {
             get {
                 object obj = ResourceManager.GetObject("istockphoto-2259151401-170x170", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Loggin_page {
+            get {
+                object obj = ResourceManager.GetObject("Loggin page", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
