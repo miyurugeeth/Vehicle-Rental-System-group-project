@@ -1,57 +1,143 @@
-# 🚗 Vehicle Rental Management System (SwiftRent)
-
-This project is designed to easily manage the daily operations (Rentals, Vehicles, Customers) of a vehicle rental business. It includes a central Dashboard and core functional modules.
-
----
-
 ## 📢 Important Note for the Team
 
-> **Latest Update:** I have completely finished designing the main **System Overview Dashboard** and the **Login Form** UI.
-> 
-> ⚠️ **If Panels or UI Elements are Not Displaying:**
-> When you pull the project, you might notice that some panels, buttons, or rounded corners (curves) on the Dashboard are not visible. This happens because the **Guna.UI2** package might not automatically sync with your Visual Studio.
-> 
-> If you face this issue, please follow the steps below to download or restore the **Guna.UI2** NuGet Package.
+### ✅ Completed Modules
+
+The following modules have already been completed and pushed to the project:
+
+* Login Form UI
+* Vehicle Fleet Management Module
+* SQLite Database Configuration
+* Dashboard Statistics Cards
+* Recent Transactions Grid
+
+
+
+## 🚗 Vehicle Fleet Module Integration (Important)
+
+The **Vehicle Fleet Module** has been fully completed as a separate UserControl:
+
+```text
+UC_VehicleFleetDashboard
+```
+
+### Dashboard Integration Requirement
+
+Once the Main Dashboard development is completed, the **Vehicle Fleet** button on the left navigation panel must load the Vehicle Fleet module inside the right-side content panel.
+
+### Expected Behavior
+
+```text
+Left Navigation Panel
+ ├── Dashboard
+ ├── Vehicle Fleet
+ ├── Customers
+ └── Rentals...
+
+
+
+Right Content Panel
+ └── Loads selected module dynamically
+```
+
+When the user clicks:
+
+```text
+Vehicle Fleet
+```
+
+the following UserControl should be loaded into the Dashboard content panel:
+
+```text
+UC_VehicleFleetDashboard
+```
+
+### Example Implementation
+
+```csharp
+private void btnVehicleFleet_Click(object sender, EventArgs e)
+{
+    panelContent.Controls.Clear();
+
+    UC_VehicleFleetDashboard vehicleFleet =
+        new UC_VehicleFleetDashboard();
+
+    vehicleFleet.Dock = DockStyle.Fill;
+
+    panelContent.Controls.Add(vehicleFleet);
+}
+```
+
+This will display the complete Vehicle Fleet Management interface inside the Dashboard without opening a new window.
 
 ---
 
-## 🛠️ How to Fix Guna UI Package Issue
+## 🛠️ Guna.UI2 Package Fix
 
-If the UI looks broken, generic, or completely blank on your computer, please follow these steps:
+If the UI appears broken, missing controls, rounded corners, or panels are not visible:
 
-1. In Visual Studio, go to the top menu and select **Tools** ➔ **NuGet Package Manager** ➔ **Manage NuGet Packages for Solution...**
-2. Check the **Installed** tab. (If it's not there, go to the **Browse** tab and search for `Guna.UI2`).
-3. Select **Guna.UI2**, check the box next to your project name on the right panel, and click the **Install** or **Update/Restore** button.
-4. Once installed, go to **Build** ➔ **Clean Solution**, and then click **Rebuild Solution**. Everything should work perfectly!
+1. Open Visual Studio.
+
+2. Go to:
+
+   Tools ➜ NuGet Package Manager ➜ Manage NuGet Packages for Solution
+
+3. Check whether **Guna.UI2** is installed.
+
+4. If missing:
+
+   * Open the Browse tab.
+   * Search for:
+
+   ```text
+   Guna.UI2.WinForms
+   ```
+
+   * Install or Restore the package.
+
+5. After installation:
+
+   ```text
+   Build ➜ Clean Solution
+   Build ➜ Rebuild Solution
+   ```
+
+---
+### 🚗 Vehicle Fleet Management
+
+The Vehicle Fleet module supports:
+
+* Add New Vehicles
+* Update Vehicle Information
+* Delete Vehicles
+* Search Vehicles
+* Vehicle Status Management
+* Insurance Expiry Tracking
+* Real-time DataGridView Refresh
+
+### 🗄️ Database Configuration
+
+Database Engine:
+
+```text
+SQLite 3
+```
+
+Database File:
+
+```text
+\Database\vehicle_rental.db
+```
+
+Connection String:
+
+```csharp
+Data Source=|DataDirectory|\Database\vehicle_rental.db;Version=3;
+```
+
+Using relative paths ensures the database works correctly on all team members' computers.
 
 ---
 
-## 🚀 Completed Features
+### SwiftRent Development Team
 
-* **Responsive Login UI:** A beautifully styled SwiftRent Login Form that automatically centers itself perfectly on any screen size.
-* **Real-time Stat Counters (Card System):** Live data cards directly linked to the database, displaying:
-  * **Total Fleet Size:** Total number of registered vehicles.
-  * **Active Rentals:** Vehicles currently out on rent.
-  * **Pending Returns:** Vehicles expected to be returned today.
-  * **Vehicles in Maintenance:** Vehicles currently under repair/service.
-* **Recent Transactions Grid:** A highly secure, full-screen stretching Dark Blue DataGridView that automatically loads the last 5 transactions.
-* **Local SQLite Database Setup:** Configured using Relative Paths (`|DataDirectory|`) so that the database works instantly on anyone's computer without path errors.
-
----
-
-## 🗄️ Database Information
-
-* **Database Engine:** SQLite 3
-* **File Name:** `vehicle_rental.db` (Located inside the `\Database\` folder)
-* **Connection String:** `Data Source=|DataDirectory|\Database\vehicle_rental.db;Version=3;`
-
----
-
-## 👥 To-Do for Team Members (Next Steps)
-
-- [ ] Connect the Vehicle Management Form to the main Dashboard.
-- [ ] Create and design the Customer Registration Form.
-- [ ] Develop modules required for printing reports and invoices.
-
----
-💡 *If you run into any issues, just drop a message in our group chat!*
+If you encounter any issues during development, please notify the team through the project group chat before modifying shared components.
