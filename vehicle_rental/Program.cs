@@ -16,6 +16,10 @@ namespace vehicle_rental
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+            AppDomain.CurrentDomain.SetData(
+       "DataDirectory",
+       Application.StartupPath
+   );
             Application.Run(new LoginForm());
         }
     }

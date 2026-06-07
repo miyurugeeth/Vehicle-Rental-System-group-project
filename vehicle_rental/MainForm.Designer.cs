@@ -28,25 +28,24 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.uC_DashboardOverview1 = new vehicle_rental.UC_DashboardOverview();
+            this.uC_VehicleFleetDashboard1 = new vehicle_rental.UC_VehicleFleetDashboard();
             this.SuspendLayout();
             // 
-            // uC_DashboardOverview1
+            // uC_VehicleFleetDashboard1
             // 
-            this.uC_DashboardOverview1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(27)))), ((int)(((byte)(66)))));
-            this.uC_DashboardOverview1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.uC_DashboardOverview1.Location = new System.Drawing.Point(0, 0);
-            this.uC_DashboardOverview1.Name = "uC_DashboardOverview1";
-            this.uC_DashboardOverview1.Size = new System.Drawing.Size(1085, 620);
-            this.uC_DashboardOverview1.TabIndex = 0;
-            this.uC_DashboardOverview1.Load += new System.EventHandler(this.uC_DashboardOverview1_Load);
+            this.uC_VehicleFleetDashboard1.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            this.uC_VehicleFleetDashboard1.Location = new System.Drawing.Point(3, 1);
+            this.uC_VehicleFleetDashboard1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.uC_VehicleFleetDashboard1.Name = "uC_VehicleFleetDashboard1";
+            this.uC_VehicleFleetDashboard1.Size = new System.Drawing.Size(1104, 779);
+            this.uC_VehicleFleetDashboard1.TabIndex = 0;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1085, 620);
-            this.Controls.Add(this.uC_DashboardOverview1);
+            this.ClientSize = new System.Drawing.Size(1137, 784);
+            this.Controls.Add(this.uC_VehicleFleetDashboard1);
             this.Name = "MainForm";
             this.Text = "MainForm";
             this.ResumeLayout(false);
@@ -55,6 +54,6 @@
 
         #endregion
 
-        private UC_DashboardOverview uC_DashboardOverview1;
+        private UC_VehicleFleetDashboard uC_VehicleFleetDashboard1;
     }
 }
