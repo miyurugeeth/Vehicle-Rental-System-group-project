@@ -8,7 +8,7 @@ namespace vehicle_rental
     public static class DatabaseHelper
     {
         // Location of the database file (Relative Path)
-        private static string connectionString = @"Data Source=D:\Vehicle-Rental-System-group-project\vehicle_rental\Database\vehicle_rental.db;Version=3;";
+        private static string connectionString = @"Data Source=C:\Users\user\OneDrive\Desktop\new project\vehicle_rental\Database\vehicle_rental.db;Version=3;";
 
         // 1. The function that connects and opens the database
         public static SQLiteConnection GetConnection()
@@ -217,5 +217,38 @@ namespace vehicle_rental
                 cmd.ExecuteNonQuery();
             }
         }
+        // I. Monthly Income චාර්ට් එකට දත්ත ලබාගැනීම
+        public static DataTable GetMonthlyIncome()
+        {
+            // ⚠️ උඹේPayments හෝ Rentals ටේබල් එකේ නම සහ Column නම් අනුව SQL එක වෙනස් කරගන්න.
+            // මෙතනින් වෙන්නේ මාසය සහ ඒ මාසයේ මුළු ආදායම එකතු කරලා දෙන එක.
+            string query = @"
+        SELECT strftime('%m', RentDate) AS Month, SUM(TotalAmount) AS Income 
+        FROM Rentals 
+        GROUP BY Month 
+        ORDER BY Month ASC;";
+
+            return ExecuteQuery(query,null);
+        }
+
+        // II. Fleet Utilization (වාහන කුලියට දී ඇති ප්‍රමාණය සහ ඉතිරි ප්‍රමාණය) චාර්ට් එකට දත්ත ලබාගැනීම
+        public static DataTable GetFleetUtilization()
+        {
+            DataTable dt = new DataTable();
+            dt.Columns.Add("Status", typeof(string));
+            dt.Columns.Add("Count", typeof(int));
+
+            // අපි කලින් ලියපු මෙතඩ්ස් වලින් අගයන් ගන්නවා
+            int active = GetActiveRentalsCount();
+            int available = GetAvailableCarsCount();
+
+            // චාර්ට් එකට තේරෙන විදියට ඩේටා ටේබල් එකකට පේළි 2ක් එකතු කරනවා
+            dt.Rows.Add("Rented", active);
+            dt.Rows.Add("Available", available);
+
+            return dt;
+        }
+
     }
+
 }
