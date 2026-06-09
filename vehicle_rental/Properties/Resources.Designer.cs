@@ -63,9 +63,129 @@ namespace vehicle_rental.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap _1081856_200 {
+            get {
+                object obj = ResourceManager.GetObject("1081856-200", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap _1081856_2001 {
+            get {
+                object obj = ResourceManager.GetObject("1081856-2001", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap _1081856_2002 {
+            get {
+                object obj = ResourceManager.GetObject("1081856-2002", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap car_Image_Jun_9__2026__06_39_03_PM {
+            get {
+                object obj = ResourceManager.GetObject("car Image Jun 9, 2026, 06_39_03 PM", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap car_Image_Jun_9__2026__06_39_03_PM_1_ {
+            get {
+                object obj = ResourceManager.GetObject("car Image Jun 9, 2026, 06_39_03 PM(1)", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap cg_password_comments_lock_free_icon_11563211408fxujbvxfne {
+            get {
+                object obj = ResourceManager.GetObject("cg-password-comments-lock-free-icon-11563211408fxujbvxfne", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap cg_password_comments_lock_free_icon_11563211408fxujbvxfne1 {
+            get {
+                object obj = ResourceManager.GetObject("cg-password-comments-lock-free-icon-11563211408fxujbvxfne1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap ChatGPT_Image_Jun_4__2026__03_44_20_AM {
             get {
                 object obj = ResourceManager.GetObject("ChatGPT Image Jun 4, 2026, 03_44_20 AM", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap ChatGPT_Image_Jun_9__2026__08_24_13_PM {
+            get {
+                object obj = ResourceManager.GetObject("ChatGPT Image Jun 9, 2026, 08_24_13 PM", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap ChatGPT_Image_Jun_9__2026__08_24_13_PM1 {
+            get {
+                object obj = ResourceManager.GetObject("ChatGPT Image Jun 9, 2026, 08_24_13 PM1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap computer_icons_password_login_user_padlock {
+            get {
+                object obj = ResourceManager.GetObject("computer-icons-password-login-user-padlock", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap computer_icons_password_login_user_padlock_removebg_preview {
+            get {
+                object obj = ResourceManager.GetObject("computer-icons-password-login-user-padlock-removebg-preview", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap computer_icons_password_password_thumbnail {
+            get {
+                object obj = ResourceManager.GetObject("computer-icons-password-password-thumbnail", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -116,6 +236,46 @@ namespace vehicle_rental.Properties {
         internal static System.Drawing.Bitmap istockphoto_2259151401_170x170 {
             get {
                 object obj = ResourceManager.GetObject("istockphoto-2259151401-170x170", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap password_manager_computer_icons_password_thumbnail {
+            get {
+                object obj = ResourceManager.GetObject("password-manager-computer-icons-password-thumbnail", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap png_transparent_purple_violet_magenta_area_rectangle_lines_purple_angle_text {
+            get {
+                object obj = ResourceManager.GetObject("png-transparent-purple-violet-magenta-area-rectangle-lines-purple-angle-text", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap pngtree_vector_lock_icon_png_image_515444 {
+            get {
+                object obj = ResourceManager.GetObject("pngtree-vector-lock-icon-png-image_515444", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap pngtree_vector_lock_icon_png_image_5154441 {
+            get {
+                object obj = ResourceManager.GetObject("pngtree-vector-lock-icon-png-image_5154441", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
