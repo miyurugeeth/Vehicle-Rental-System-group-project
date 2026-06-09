@@ -14,7 +14,7 @@ namespace VehicleRentSystem
         private ComboBox   cmbCustomer, cmbVehicle;
         private DateTimePicker dtpRentDate, dtpReturnDate;
         private TextBox    txtDays, txtDailyRate, txtTotalAmount;
-        private Button     btnSave, btnClear, btnClose;
+        private Button     btnSave, btnClear, btnClose, btnAddCustomer;
         private DataGridView dgvRentals;
         private Label      lblGridTitle;
 
@@ -79,6 +79,20 @@ namespace VehicleRentSystem
                 FlatStyle     = FlatStyle.Flat,
                 BackColor     = Color.FromArgb(249, 250, 251)
             };
+
+            btnAddCustomer = new Button
+            {
+                Text      = "➕ New Customer",
+                Location  = new Point(20, 76),
+                Size      = new Size(130, 26),
+                BackColor = Color.FromArgb(5, 122, 85),
+                ForeColor = Color.White,
+                FlatStyle = FlatStyle.Flat,
+                Font      = new Font("Segoe UI", 8.5f, FontStyle.Bold),
+                Cursor    = Cursors.Hand
+            };
+            btnAddCustomer.FlatAppearance.BorderSize = 0;
+            btnAddCustomer.Click += BtnAddCustomer_Click;
 
             lblVehicle = MakeLabel("Vehicle *", new Point(330, 18));
             cmbVehicle = new ComboBox
@@ -153,7 +167,7 @@ namespace VehicleRentSystem
             btnClear.Click += (s, e) => ClearForm();
 
             pnlForm.Controls.AddRange(new Control[] {
-                lblCustomer, cmbCustomer, lblVehicle, cmbVehicle,
+                lblCustomer, cmbCustomer, btnAddCustomer, lblVehicle, cmbVehicle,
                 lblRentDate, dtpRentDate, lblReturnDate, dtpReturnDate,
                 lblDays, txtDays, lblRate, txtDailyRate, lblTotal, txtTotalAmount,
                 btnSave, btnClear
@@ -242,6 +256,18 @@ namespace VehicleRentSystem
         {
             using (var pen = new System.Drawing.Pen(Color.FromArgb(229, 231, 235), 1))
                 g.DrawRectangle(pen, 0, 0, ctrl.Width - 1, ctrl.Height - 1);
+        }
+
+        private void BtnAddCustomer_Click(object sender, EventArgs e)
+        {
+            var form = new AddCustomerForm();
+            if (form.ShowDialog() == DialogResult.OK)
+            {
+                // Reload dropdown and select the newly added customer
+                LoadCustomers();
+                if (form.NewCustomerID > 0)
+                    cmbCustomer.SelectedValue = form.NewCustomerID;
+            }
         }
 
         private void LoadCustomers()

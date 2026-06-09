@@ -10,7 +10,7 @@ namespace VehicleRentSystem
         private static string dbPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "VehicleRent.db");
         private static string connectionString = $"Data Source={dbPath};Version=3;";
 
-        
+        // Database initialize කිරීම
         public static void InitializeDatabase()
         {
             if (!File.Exists(dbPath))
@@ -60,7 +60,7 @@ namespace VehicleRentSystem
                 ExecuteNonQuery(createCustomers, conn);
                 ExecuteNonQuery(createRentals, conn);
 
-                
+                // Sample data insert (tables empty නම් විතරක්)
                 InsertSampleData(conn);
             }
         }
