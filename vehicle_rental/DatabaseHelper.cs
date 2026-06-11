@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data;
+using System.Data.SqlClient;
 using System.Data.SQLite;
 using System.Windows.Forms;
 
@@ -153,6 +154,48 @@ namespace vehicle_rental
             // The total number of vehicles currently rented out is subtracted from the remaining number of vehicles.
             return totalVehicles - activeRentals;
         }
+
+        // Get count of vehicles currently in maintenance
+        public static int GetVehiclesInMaintenanceCount()
+        {
+            int count = 0;
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                string query = @"SELECT COUNT(*) FROM Vehicles 
+                        WHERE Status = 'Maintenance' 
+                        OR Status = 'In Repair' 
+                        OR Status = 'Under Service'";
+
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    conn.Open();
+                    count = Convert.ToInt32(cmd.ExecuteScalar());
+                }
+            }
+            return count;
+        }
+
+        // Get count of rentals that are due to return today
+        public static int GetPendingReturnsCount()
+        {
+            int count = 0;
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                string query = @"SELECT COUNT(*) FROM Rentals 
+                        WHERE Status = 'Active' 
+                        AND CAST(ReturnDate AS DATE) = CAST(GETDATE() AS DATE)";
+
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    conn.Open();
+                    count = Convert.ToInt32(cmd.ExecuteScalar());
+                }
+            }
+            return count;
+        }
+
+
+
         public static DataTable GetRecentTransactions()
         {
             DataTable dt = new DataTable();
