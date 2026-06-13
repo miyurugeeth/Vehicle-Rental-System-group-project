@@ -1,6 +1,3 @@
-using System;
-using System.Windows.Forms;
-
 namespace VehicleRentSystem
 {
     public partial class MainDashboard : Form
