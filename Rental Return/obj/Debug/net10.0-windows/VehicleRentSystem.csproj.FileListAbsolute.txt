@@ -1,0 +1,71 @@
+C:\Users\acer\Desktop\New folder (2)\obj\Debug\net10.0-windows\VehicleRentSystem.csproj.AssemblyReference.cache
+C:\Users\acer\Desktop\New folder (2)\obj\Debug\net10.0-windows\VehicleRentSystem.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\acer\Desktop\New folder (2)\obj\Debug\net10.0-windows\VehicleRentSystem.AssemblyInfoInputs.cache
+C:\Users\acer\Desktop\New folder (2)\obj\Debug\net10.0-windows\VehicleRentSystem.AssemblyInfo.cs
+C:\Users\acer\Desktop\New folder (2)\obj\Debug\net10.0-windows\VehicleRentSystem.csproj.CoreCompileInputs.cache
+C:\Users\acer\Desktop\New folder (2)\bin\Debug\net10.0-windows\VehicleRentSystem.exe
+C:\Users\acer\Desktop\New folder (2)\bin\Debug\net10.0-windows\VehicleRentSystem.deps.json
+C:\Users\acer\Desktop\New folder (2)\bin\Debug\net10.0-windows\VehicleRentSystem.runtimeconfig.json
+C:\Users\acer\Desktop\New folder (2)\bin\Debug\net10.0-windows\VehicleRentSystem.dll
+C:\Users\acer\Desktop\New folder (2)\bin\Debug\net10.0-windows\VehicleRentSystem.pdb
+C:\Users\acer\Desktop\New folder (2)\bin\Debug\net10.0-windows\EntityFramework.SqlServer.dll
+C:\Users\acer\Desktop\New folder (2)\bin\Debug\net10.0-windows\EntityFramework.dll
+C:\Users\acer\Desktop\New folder (2)\bin\Debug\net10.0-windows\System.Data.SQLite.dll
+C:\Users\acer\Desktop\New folder (2)\bin\Debug\net10.0-windows\System.Data.SqlClient.dll
+C:\Users\acer\Desktop\New folder (2)\bin\Debug\net10.0-windows\System.Data.SQLite.EF6.dll
+C:\Users\acer\Desktop\New folder (2)\bin\Debug\net10.0-windows\runtimes\win-arm64\native\sni.dll
+C:\Users\acer\Desktop\New folder (2)\bin\Debug\net10.0-windows\runtimes\win-x64\native\sni.dll
+C:\Users\acer\Desktop\New folder (2)\bin\Debug\net10.0-windows\runtimes\win-x86\native\sni.dll
+C:\Users\acer\Desktop\New folder (2)\bin\Debug\net10.0-windows\runtimes\linux-x64\native\SQLite.Interop.dll
+C:\Users\acer\Desktop\New folder (2)\bin\Debug\net10.0-windows\runtimes\osx-x64\native\SQLite.Interop.dll
+C:\Users\acer\Desktop\New folder (2)\bin\Debug\net10.0-windows\runtimes\win-x64\native\SQLite.Interop.dll
+C:\Users\acer\Desktop\New folder (2)\bin\Debug\net10.0-windows\runtimes\win-x86\native\SQLite.Interop.dll
+C:\Users\acer\Desktop\New folder (2)\bin\Debug\net10.0-windows\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
+C:\Users\acer\Desktop\New folder (2)\bin\Debug\net10.0-windows\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
+C:\Users\acer\Desktop\New folder (2)\obj\Debug\net10.0-windows\VehicleRentSystem.MainDashboard.resources
+C:\Users\acer\Desktop\New folder (2)\obj\Debug\net10.0-windows\VehicleRentSystem.RentalForm.resources
+C:\Users\acer\Desktop\New folder (2)\obj\Debug\net10.0-windows\VehicleRentSystem.csproj.GenerateResource.cache
+C:\Users\acer\Desktop\New folder (2)\obj\Debug\net10.0-windows\VehicleR.C0D49B09.Up2Date
+C:\Users\acer\Desktop\New folder (2)\obj\Debug\net10.0-windows\VehicleRentSystem.dll
+C:\Users\acer\Desktop\New folder (2)\obj\Debug\net10.0-windows\refint\VehicleRentSystem.dll
+C:\Users\acer\Desktop\New folder (2)\obj\Debug\net10.0-windows\VehicleRentSystem.pdb
+C:\Users\acer\Desktop\New folder (2)\obj\Debug\net10.0-windows\VehicleRentSystem.genruntimeconfig.cache
+C:\Users\acer\Desktop\New folder (2)\obj\Debug\net10.0-windows\ref\VehicleRentSystem.dll
+C:\Users\acer\Desktop\New folder (2)\obj\Debug\net10.0-windows\VehicleRentSystem.ReturnForm.resources
+C:\Users\acer\Desktop\New folder (2)\obj\Debug\net10.0-windows\VehicleRentSystem.Properties.Resources.resources
+C:\Users\acer\Desktop\Rental Return\bin\Debug\net10.0-windows\VehicleRentSystem.exe
+C:\Users\acer\Desktop\Rental Return\bin\Debug\net10.0-windows\VehicleRentSystem.deps.json
+C:\Users\acer\Desktop\Rental Return\bin\Debug\net10.0-windows\VehicleRentSystem.runtimeconfig.json
+C:\Users\acer\Desktop\Rental Return\bin\Debug\net10.0-windows\VehicleRentSystem.dll
+C:\Users\acer\Desktop\Rental Return\bin\Debug\net10.0-windows\VehicleRentSystem.pdb
+C:\Users\acer\Desktop\Rental Return\bin\Debug\net10.0-windows\EntityFramework.SqlServer.dll
+C:\Users\acer\Desktop\Rental Return\bin\Debug\net10.0-windows\EntityFramework.dll
+C:\Users\acer\Desktop\Rental Return\bin\Debug\net10.0-windows\System.Data.SQLite.dll
+C:\Users\acer\Desktop\Rental Return\bin\Debug\net10.0-windows\System.Data.SqlClient.dll
+C:\Users\acer\Desktop\Rental Return\bin\Debug\net10.0-windows\System.Data.SQLite.EF6.dll
+C:\Users\acer\Desktop\Rental Return\bin\Debug\net10.0-windows\runtimes\win-arm64\native\sni.dll
+C:\Users\acer\Desktop\Rental Return\bin\Debug\net10.0-windows\runtimes\win-x64\native\sni.dll
+C:\Users\acer\Desktop\Rental Return\bin\Debug\net10.0-windows\runtimes\win-x86\native\sni.dll
+C:\Users\acer\Desktop\Rental Return\bin\Debug\net10.0-windows\runtimes\linux-x64\native\SQLite.Interop.dll
+C:\Users\acer\Desktop\Rental Return\bin\Debug\net10.0-windows\runtimes\osx-x64\native\SQLite.Interop.dll
+C:\Users\acer\Desktop\Rental Return\bin\Debug\net10.0-windows\runtimes\win-x64\native\SQLite.Interop.dll
+C:\Users\acer\Desktop\Rental Return\bin\Debug\net10.0-windows\runtimes\win-x86\native\SQLite.Interop.dll
+C:\Users\acer\Desktop\Rental Return\bin\Debug\net10.0-windows\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
+C:\Users\acer\Desktop\Rental Return\bin\Debug\net10.0-windows\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
+C:\Users\acer\Desktop\Rental Return\obj\Debug\net10.0-windows\VehicleRentSystem.csproj.AssemblyReference.cache
+C:\Users\acer\Desktop\Rental Return\obj\Debug\net10.0-windows\VehicleRentSystem.MainDashboard.resources
+C:\Users\acer\Desktop\Rental Return\obj\Debug\net10.0-windows\VehicleRentSystem.Properties.Resources.resources
+C:\Users\acer\Desktop\Rental Return\obj\Debug\net10.0-windows\VehicleRentSystem.RentalForm.resources
+C:\Users\acer\Desktop\Rental Return\obj\Debug\net10.0-windows\VehicleRentSystem.ReturnForm.resources
+C:\Users\acer\Desktop\Rental Return\obj\Debug\net10.0-windows\VehicleRentSystem.csproj.GenerateResource.cache
+C:\Users\acer\Desktop\Rental Return\obj\Debug\net10.0-windows\VehicleRentSystem.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\acer\Desktop\Rental Return\obj\Debug\net10.0-windows\VehicleRentSystem.AssemblyInfoInputs.cache
+C:\Users\acer\Desktop\Rental Return\obj\Debug\net10.0-windows\VehicleRentSystem.AssemblyInfo.cs
+C:\Users\acer\Desktop\Rental Return\obj\Debug\net10.0-windows\VehicleRentSystem.csproj.CoreCompileInputs.cache
+C:\Users\acer\Desktop\Rental Return\obj\Debug\net10.0-windows\VehicleR.C0D49B09.Up2Date
+C:\Users\acer\Desktop\Rental Return\obj\Debug\net10.0-windows\VehicleRentSystem.dll
+C:\Users\acer\Desktop\Rental Return\obj\Debug\net10.0-windows\refint\VehicleRentSystem.dll
+C:\Users\acer\Desktop\Rental Return\obj\Debug\net10.0-windows\VehicleRentSystem.pdb
+C:\Users\acer\Desktop\Rental Return\obj\Debug\net10.0-windows\VehicleRentSystem.genruntimeconfig.cache
+C:\Users\acer\Desktop\Rental Return\obj\Debug\net10.0-windows\ref\VehicleRentSystem.dll
+C:\Users\acer\Desktop\Rental Return\obj\Debug\net10.0-windows\VehicleRentSystem.AddCustomerForm.resources
