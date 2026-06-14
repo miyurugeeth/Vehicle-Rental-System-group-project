@@ -41,7 +41,7 @@ namespace vehicle_rental
             }
         }
 
-        // 3. Common Function (Select) to read data
+        // 3. Common Function (Select) to read data and return DataTable
         public static DataTable ExecuteQuery(string query, SQLiteParameter[] parameters = null)
         {
             DataTable dt = new DataTable();
@@ -71,11 +71,11 @@ namespace vehicle_rental
         }
 
 
-        // A. මුළු වාහන ගණන (Total Vehicles)
+        // A. Total Vehicles Count from Vehicles Table
         public static int GetTotalVehiclesCount()
         {
             int count = 0;
-            string query = "SELECT COUNT(*) FROM Vehicles"; // ⚠️ ටේබල් නම වෙනස් නම් මාරු කරන්න
+            string query = "SELECT COUNT(*) FROM Vehicles";
 
             using (SQLiteConnection con = GetConnection())
             {
@@ -95,11 +95,10 @@ namespace vehicle_rental
             return count;
         }
 
-        // B. දැනට කුලියට දී ඇති වාහන ගණන (Active Rentals)
+        // B. Active Rentals Count from Rentals Table
         public static int GetActiveRentalsCount()
         {
             int count = 0;
-            // ⚠️ උඹේ Rentals ටේබල් එකේ Active ඒවා බලන කන්ඩිෂන් එක දාන්න (උදා: Status = 'Active' හෝ 'Rented')
             string query = "SELECT COUNT(*) FROM Rentals WHERE ActualReturnDate IS NULL OR ActualReturnDate = ''";
 
             using (SQLiteConnection con = GetConnection())
@@ -120,11 +119,11 @@ namespace vehicle_rental
             return count;
         }
 
-        // C. මුළු පාරිභෝගිකයින්/යූසර්ලා ගණන (Total Users)
+        // C. Total Customers/Users Count
         public static int GetTotalUsersCount()
         {
             int count = 0;
-            string query = "SELECT COUNT(*) FROM Users"; // ⚠️ උඹේ Users/Customers ටේබල් එකේ නම දාන්න
+            string query = "SELECT COUNT(*) FROM Customers";
 
             using (SQLiteConnection con = GetConnection())
             {
@@ -144,21 +143,20 @@ namespace vehicle_rental
             return count;
         }
 
-        // D. දැනට ඉතිරිව ඇති වාහන ගණන (Available Cars)
+        // D. Available Cars Count
         public static int GetAvailableCarsCount()
         {
             int totalVehicles = GetTotalVehiclesCount();
             int activeRentals = GetActiveRentalsCount();
 
-            // මුළු වාහන ගණනෙන් දැනට කුලියට දීපුවා අඩු කරාම ඉතිරි වාහන ගණන එනවා
             return totalVehicles - activeRentals;
         }
+
+        // E. Fetch Top 5 Recent Rental Transactions for Dashboard View
         public static DataTable GetRecentTransactions()
         {
             DataTable dt = new DataTable();
 
-            // Rentals, Customers, සහ Vehicles ටේබල් 3ම JOIN කරලා අපිට ඕන විස්තර විතරක් ගන්නවා.
-            // ORDER BY RentalID DESC දාන්නේ අලුත්ම ට්‍රාන්සැක්ෂන් උඩටම එන්න. LIMIT 5න් අන්තිම 5 විතරක් ගන්නවා.
             string query = @"
         SELECT 
             '#RNT-' || r.RentalID AS [Rental ID],
@@ -196,6 +194,8 @@ namespace vehicle_rental
             }
             return dt;
         }
+
+        // F. Legacy Support Method to Fetch DataTable Using Custom Row Queries
         public static DataTable GetData(string query)
         {
             using (SQLiteConnection conn = new SQLiteConnection(connectionString))
@@ -207,8 +207,8 @@ namespace vehicle_rental
             }
         }
 
-        // 2. INSERT/UPDATE/DELETE query සඳහා ExecuteQuery Method එක
-        public static void ExecuteQuery(string query)
+        // G. Renamed to avoid loop conflict with the primary ExecuteQuery method
+        public static void ExecuteNonQueryLocal(string query)
         {
             using (SQLiteConnection conn = new SQLiteConnection(connectionString))
             {
@@ -217,38 +217,25 @@ namespace vehicle_rental
                 cmd.ExecuteNonQuery();
             }
         }
-        // I. Monthly Income චාර්ට් එකට දත්ත ලබාගැනීම
+
+        // I. Fetch and Accumulate Aggregated Monthly Incomes for Column Charts
         public static DataTable GetMonthlyIncome()
         {
-            // ⚠️ උඹේPayments හෝ Rentals ටේබල් එකේ නම සහ Column නම් අනුව SQL එක වෙනස් කරගන්න.
-            // මෙතනින් වෙන්නේ මාසය සහ ඒ මාසයේ මුළු ආදායම එකතු කරලා දෙන එක.
             string query = @"
         SELECT strftime('%m', RentDate) AS Month, SUM(TotalAmount) AS Income 
         FROM Rentals 
         GROUP BY Month 
         ORDER BY Month ASC;";
 
-            return ExecuteQuery(query,null);
+            // Explicitly routes to the main parameter-based ExecuteQuery data handler
+            return ExecuteQuery(query, null);
         }
 
-        // II. Fleet Utilization (වාහන කුලියට දී ඇති ප්‍රමාණය සහ ඉතිරි ප්‍රමාණය) චාර්ට් එකට දත්ත ලබාගැනීම
+        // II. Fetch Dynamic Fleet Utilization Statistics Based on Real-Time Vehicle Status Values
         public static DataTable GetFleetUtilization()
         {
-            DataTable dt = new DataTable();
-            dt.Columns.Add("Status", typeof(string));
-            dt.Columns.Add("Count", typeof(int));
-
-            // අපි කලින් ලියපු මෙතඩ්ස් වලින් අගයන් ගන්නවා
-            int active = GetActiveRentalsCount();
-            int available = GetAvailableCarsCount();
-
-            // චාර්ට් එකට තේරෙන විදියට ඩේටා ටේබල් එකකට පේළි 2ක් එකතු කරනවා
-            dt.Rows.Add("Rented", active);
-            dt.Rows.Add("Available", available);
-
-            return dt;
+            string query = "SELECT Status, COUNT(*) as Count FROM Vehicles GROUP BY Status";
+            return ExecuteQuery(query, null);
         }
-
     }
-
 }
