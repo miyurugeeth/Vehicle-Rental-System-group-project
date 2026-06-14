@@ -8,11 +8,16 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SQLite;
+// Added for programmatic Charting
+using System.Windows.Forms.DataVisualization.Charting;
 
 namespace vehicle_rental
 {
     public partial class MainForm : Form
     {
+        // Class-level chart object so we can access and refresh it anytime
+        private Chart dashboardPieChart;
+
         public MainForm()
         {
             InitializeComponent();
@@ -20,8 +25,55 @@ namespace vehicle_rental
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            // Load all dashboard counts when form loads
+            // Initialize and configure the pie chart programmatically
+            InitializeDashboardChart();
+
+            // Load all dashboard counts and plot chart when form loads
             LoadDashboardCounts();
+        }
+
+        private void InitializeDashboardChart()
+        {
+            // 1. Create Chart Object
+            dashboardPieChart = new Chart();
+            dashboardPieChart.Size = new Size(350, 250);     // Set an optimal visual size
+            dashboardPieChart.Location = new Point(170, 14); // Your exact requested location
+
+            // 2. Setup Chart Area
+            ChartArea chartArea = new ChartArea("MainArea");
+            dashboardPieChart.ChartAreas.Add(chartArea);
+
+            // 3. Setup Data Series
+            Series series = new Series("StatusSeries");
+            series.ChartType = SeriesChartType.Pie;
+            dashboardPieChart.Series.Add(series);
+
+            // 4. Set Visual Styling
+            series["PieLabelStyle"] = "Outside"; // Show labels pointing outwards
+            series.IsValueShownAsLabel = true;    // Show numeric values directly on slices
+            dashboardPieChart.Palette = ChartColorPalette.BrightPastel;
+
+            // 5. Add Legend
+            Legend legend = new Legend("MainLegend");
+            dashboardPieChart.Legends.Add(legend);
+
+            // 6. Inject the dynamic control into the form
+            this.Controls.Add(dashboardPieChart);
+        }
+
+        private void UpdatePieChart(int onRent, int overdue, int returned, int pending)
+        {
+            // Clear old data points to prevent stack duplicates on dynamic updates
+            dashboardPieChart.Series["StatusSeries"].Points.Clear();
+
+            // Only add data points if there's data to avoid zero-rendering visual glitches
+            if (onRent > 0) dashboardPieChart.Series["StatusSeries"].Points.AddXY("On Rent", onRent);
+            if (overdue > 0) dashboardPieChart.Series["StatusSeries"].Points.AddXY("Overdue", overdue);
+            if (returned > 0) dashboardPieChart.Series["StatusSeries"].Points.AddXY("Returned", returned);
+            if (pending > 0) dashboardPieChart.Series["StatusSeries"].Points.AddXY("Pending", pending);
+
+            // Force the UI elements to redraw cleanly
+            dashboardPieChart.Invalidate();
         }
 
         private void LoadDashboardCounts()
@@ -39,6 +91,9 @@ namespace vehicle_rental
                 label6.Text = overduesCount.ToString();
                 label7.Text = returnCount.ToString();
                 label8.Text = pendingPaymentCount.ToString();
+
+                // Update the programmatic Pie Chart dynamically with new DB values
+                UpdatePieChart(onRentCount, overduesCount, returnCount, pendingPaymentCount);
             }
             catch (Exception ex)
             {
@@ -98,11 +153,9 @@ namespace vehicle_rental
         }
 
         // 3. Get Return Count (Total number of completed returns - today or all time)
-        // This gets today's returns. Change date condition for all time.
         private int GetReturnCount()
         {
             int count = 0;
-            // Returns completed today
             string query = @"SELECT COUNT(*) FROM Rentals 
                             WHERE ActualReturnDate IS NOT NULL 
                             AND ActualReturnDate != ''
@@ -126,7 +179,6 @@ namespace vehicle_rental
             return count;
         }
 
-        // Alternative: Get ALL TIME returns (uncomment if you want total returns ever)
         private int GetAllTimeReturnCount()
         {
             int count = 0;
@@ -156,15 +208,11 @@ namespace vehicle_rental
         private int GetPendingPaymentCount()
         {
             int count = 0;
-            // Adjust based on your Payment/Payments table structure
             string query = @"SELECT COUNT(DISTINCT r.RentalID) 
                             FROM Rentals r
                             LEFT JOIN Payments p ON r.RentalID = p.RentalID
                             WHERE r.ActualReturnDate IS NULL 
                             AND (p.PaymentID IS NULL OR p.PendingAmount > 0 OR p.Status = 'Pending')";
-
-            // Alternative simpler query if you have a Status column in Rentals
-            // string query = "SELECT COUNT(*) FROM Rentals WHERE PaymentStatus = 'Pending' OR PaymentStatus = 'Unpaid'";
 
             using (SQLiteConnection conn = DatabaseHelper.GetConnection())
             {
@@ -179,7 +227,6 @@ namespace vehicle_rental
                 }
                 catch (Exception ex)
                 {
-                    // If Payments table doesn't exist, use alternative
                     MessageBox.Show("Note: Pending payment feature needs Payments table. Using fallback.");
                     count = GetPendingPaymentFallback();
                 }
@@ -187,11 +234,9 @@ namespace vehicle_rental
             return count;
         }
 
-        // Fallback method if Payments table doesn't exist
         private int GetPendingPaymentFallback()
         {
             int count = 0;
-            // Count active rentals as pending payment
             string query = "SELECT COUNT(*) FROM Rentals WHERE ActualReturnDate IS NULL OR ActualReturnDate = ''";
 
             using (SQLiteConnection conn = DatabaseHelper.GetConnection())
@@ -212,47 +257,23 @@ namespace vehicle_rental
             return count;
         }
 
-        // Refresh button click handler (optional - add a refresh button to your form)
+        // Refresh button click handler
         private void btnRefresh_Click(object sender, EventArgs e)
         {
             LoadDashboardCounts();
         }
 
-        // Timer to auto-refresh every 30 seconds (optional)
+        // Timer to auto-refresh every 30 seconds
         private void timer1_Tick(object sender, EventArgs e)
         {
             LoadDashboardCounts();
         }
 
-        private void uC_DashboardOverview1_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label5_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label6_Click(object sender, EventArgs e)
-        {
-
-
-        }
-
-        private void label7_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label8_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void uC_VehicleFleetDashboard1_Load(object sender, EventArgs e)
-        {
-
-        }
+        private void uC_DashboardOverview1_Load(object sender, EventArgs e) { }
+        private void label5_Click(object sender, EventArgs e) { }
+        private void label6_Click(object sender, EventArgs e) { }
+        private void label7_Click(object sender, EventArgs e) { }
+        private void label8_Click(object sender, EventArgs e) { }
+        private void uC_VehicleFleetDashboard1_Load(object sender, EventArgs e) { }
     }
 }
