@@ -132,11 +132,11 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Reports &amp; System Tools.cs">
+    <Compile Include="UCReportsSystemTools .cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Reports &amp; System Tools.Designer.cs">
-      <DependentUpon>Reports &amp; System Tools.cs</DependentUpon>
+    <Compile Include="UCReportsSystemTools .Designer.cs">
+      <DependentUpon>UCReportsSystemTools .cs</DependentUpon>
     </Compile>
     <Compile Include="test.cs">
       <SubType>Form</SubType>
@@ -182,8 +182,8 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="Reports &amp; System Tools.resx">
-      <DependentUpon>Reports &amp; System Tools.cs</DependentUpon>
+    <EmbeddedResource Include="UCReportsSystemTools .resx">
+      <DependentUpon>UCReportsSystemTools .cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="test.resx">
       <DependentUpon>test.cs</DependentUpon>

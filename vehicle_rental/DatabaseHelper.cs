@@ -9,7 +9,7 @@ namespace vehicle_rental
     public static class DatabaseHelper
     {
         // Location of the database file (Relative Path)
-        private static string connectionString = @"Data Source=C:\Users\user\OneDrive\Desktop\new project\vehicle_rental\Database\vehicle_rental.db;Version=3;";
+        private static string connectionString = @"Data Source=C:\Users\Lenovo\Downloads\Vehicle-Rental-System-group-project-main\Vehicle-Rental-System-group-project-main\vehicle_rental\Database\vehicle_rental.db;Version=3;";
 
         // 1. The function that connects and opens the database
         public static SQLiteConnection GetConnection()
@@ -98,9 +98,7 @@ namespace vehicle_rental
         }
 
         // B. Active Rentals Count from Rentals Table
-        public static int GetActiveRentalsCount()
-        {
-            int count = 0;
+       
         // (Active Rentals)
         public static int GetActiveRentalsCount()
         {
@@ -127,10 +125,8 @@ namespace vehicle_rental
         }
 
         // C. Total Customers/Users Count
-        public static int GetTotalUsersCount()
-        {
-            int count = 0;
-            string query = "SELECT COUNT(*) FROM Customers";
+       
+         
         // (Total Users)
         public static int GetTotalUsersCount()
         {
@@ -167,8 +163,7 @@ namespace vehicle_rental
 
         // E. Fetch Top 5 Recent Rental Transactions for Dashboard View
             // The total number of vehicles currently rented out is subtracted from the remaining number of vehicles.
-            return totalVehicles - activeRentals;
-        }
+        
 
         // Get count of vehicles currently in maintenance
         public static int GetVehiclesInMaintenanceCount()
@@ -215,32 +210,14 @@ namespace vehicle_rental
         {
             DataTable dt = new DataTable();
 
-            string query = @"
-        SELECT 
-            '#RNT-' || r.RentalID AS [Rental ID],
-            // We JOIN the Rentals, Customers, and Vehicles tables to get only the details we need.
-            // ORDER BY RentalID DESC is used to get the most recent transaction first. LIMIT only gets the last 5 of 5.
-            string query = @"SELECT 
-           '#RNT-' || r.RentalID AS [Rental ID],
-            c.Name AS [Customer Name],
-            v.VehicleNo AS [Vehicle Reg],
-            r.ExpectedReturnDate AS [Expected Return],
-            CASE 
-                WHEN r.ActualReturnDate IS NOT NULL AND r.ActualReturnDate != '' THEN 'Returned'
-                WHEN r.ExpectedReturnDate = date('now') THEN 'Due Today'
-                ELSE 'Active'
-            END AS [Status]
-        FROM Rentals r
-        INNER JOIN Customers c ON r.CustomerID = c.CustomerID
-        INNER JOIN Vehicles v ON r.VehicleID = v.VehicleID
-        ORDER BY r.RentalID DESC
-        LIMIT 5";
+         
 
             using (SQLiteConnection con = GetConnection())
             {
                 try
                 {
                     con.Open();
+                    string query = null;
                     using (SQLiteCommand cmd = new SQLiteCommand(query, con))
                     {
                         using (SQLiteDataAdapter da = new SQLiteDataAdapter(cmd))
