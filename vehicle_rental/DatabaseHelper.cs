@@ -1,5 +1,6 @@
-﻿using System;
+using System;
 using System.Data;
+using System.Data.SqlClient;
 using System.Data.SQLite;
 using System.Windows.Forms;
 
@@ -72,6 +73,7 @@ namespace vehicle_rental
 
 
         // A. Total Vehicles Count from Vehicles Table
+        // (Total Vehicles)
         public static int GetTotalVehiclesCount()
         {
             int count = 0;
@@ -99,6 +101,11 @@ namespace vehicle_rental
         public static int GetActiveRentalsCount()
         {
             int count = 0;
+        // (Active Rentals)
+        public static int GetActiveRentalsCount()
+        {
+            int count = 0;
+            
             string query = "SELECT COUNT(*) FROM Rentals WHERE ActualReturnDate IS NULL OR ActualReturnDate = ''";
 
             using (SQLiteConnection con = GetConnection())
@@ -124,6 +131,11 @@ namespace vehicle_rental
         {
             int count = 0;
             string query = "SELECT COUNT(*) FROM Customers";
+        // (Total Users)
+        public static int GetTotalUsersCount()
+        {
+            int count = 0;
+            string query = "SELECT COUNT(*) FROM Users"; 
 
             using (SQLiteConnection con = GetConnection())
             {
@@ -144,6 +156,7 @@ namespace vehicle_rental
         }
 
         // D. Available Cars Count
+        //(Available Cars)
         public static int GetAvailableCarsCount()
         {
             int totalVehicles = GetTotalVehiclesCount();
@@ -153,6 +166,51 @@ namespace vehicle_rental
         }
 
         // E. Fetch Top 5 Recent Rental Transactions for Dashboard View
+            // The total number of vehicles currently rented out is subtracted from the remaining number of vehicles.
+            return totalVehicles - activeRentals;
+        }
+
+        // Get count of vehicles currently in maintenance
+        public static int GetVehiclesInMaintenanceCount()
+        {
+            int count = 0;
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                string query = @"SELECT COUNT(*) FROM Vehicles 
+                        WHERE Status = 'Maintenance' 
+                        OR Status = 'In Repair' 
+                        OR Status = 'Under Service'";
+
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    conn.Open();
+                    count = Convert.ToInt32(cmd.ExecuteScalar());
+                }
+            }
+            return count;
+        }
+
+        // Get count of rentals that are due to return today
+        public static int GetPendingReturnsCount()
+        {
+            int count = 0;
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                string query = @"SELECT COUNT(*) FROM Rentals 
+                        WHERE Status = 'Active' 
+                        AND CAST(ReturnDate AS DATE) = CAST(GETDATE() AS DATE)";
+
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    conn.Open();
+                    count = Convert.ToInt32(cmd.ExecuteScalar());
+                }
+            }
+            return count;
+        }
+
+
+
         public static DataTable GetRecentTransactions()
         {
             DataTable dt = new DataTable();
@@ -160,6 +218,10 @@ namespace vehicle_rental
             string query = @"
         SELECT 
             '#RNT-' || r.RentalID AS [Rental ID],
+            // We JOIN the Rentals, Customers, and Vehicles tables to get only the details we need.
+            // ORDER BY RentalID DESC is used to get the most recent transaction first. LIMIT only gets the last 5 of 5.
+            string query = @"SELECT 
+           '#RNT-' || r.RentalID AS [Rental ID],
             c.Name AS [Customer Name],
             v.VehicleNo AS [Vehicle Reg],
             r.ExpectedReturnDate AS [Expected Return],
