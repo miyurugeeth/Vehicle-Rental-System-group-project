@@ -328,7 +328,7 @@
             this.guna2CustomGradientPanel1.Controls.Add(this.guna2ShadowPanel2);
             this.guna2CustomGradientPanel1.Location = new System.Drawing.Point(-4, 1);
             this.guna2CustomGradientPanel1.Name = "guna2CustomGradientPanel1";
-            this.guna2CustomGradientPanel1.Size = new System.Drawing.Size(1151, 782);
+            this.guna2CustomGradientPanel1.Size = new System.Drawing.Size(1180, 782);
             this.guna2CustomGradientPanel1.TabIndex = 6;
             this.guna2CustomGradientPanel1.Paint += new System.Windows.Forms.PaintEventHandler(this.guna2CustomGradientPanel1_Paint);
             // 
