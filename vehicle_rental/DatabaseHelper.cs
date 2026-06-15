@@ -9,7 +9,7 @@ namespace vehicle_rental
     public static class DatabaseHelper
     {
         // Location of the database file (Relative Path)
-        private static string connectionString = @"Data Source=D:\Vehicle-Rental-System-group-project\vehicle_rental\Database\vehicle_rental.db;Version=3;";
+        private static string connectionString = @"Data Source=C:\Users\user\OneDrive\Desktop\Our Project\Billing Payement\vehicle_rental\Database\vehicle_rental.db;Version=3;";
 
         // 1. The function that connects and opens the database
         public static SQLiteConnection GetConnection()
