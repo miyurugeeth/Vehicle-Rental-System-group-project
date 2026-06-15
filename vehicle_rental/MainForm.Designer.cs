@@ -57,7 +57,7 @@
             this.guna2ShadowPanel3.SuspendLayout();
             this.guna2ShadowPanel4.SuspendLayout();
             this.guna2ShadowPanel5.SuspendLayout();
-            this.guna2CustomGradientPanel1.SuspendLayout();
+            this.panelRight.SuspendLayout();
             this.SuspendLayout();
             // 
             // guna2ShadowPanel1
@@ -171,7 +171,7 @@
             this.guna2ShadowPanel2.Controls.Add(this.label5);
             this.guna2ShadowPanel2.Controls.Add(this.label1);
             this.guna2ShadowPanel2.FillColor = System.Drawing.Color.White;
-            this.guna2ShadowPanel2.Location = new System.Drawing.Point(239, 118);
+            this.guna2ShadowPanel2.Location = new System.Drawing.Point(76, 127);
             this.guna2ShadowPanel2.Name = "guna2ShadowPanel2";
             this.guna2ShadowPanel2.ShadowColor = System.Drawing.Color.Black;
             this.guna2ShadowPanel2.Size = new System.Drawing.Size(200, 100);
@@ -204,7 +204,7 @@
             this.guna2ShadowPanel3.Controls.Add(this.label8);
             this.guna2ShadowPanel3.Controls.Add(this.label4);
             this.guna2ShadowPanel3.FillColor = System.Drawing.Color.White;
-            this.guna2ShadowPanel3.Location = new System.Drawing.Point(924, 118);
+            this.guna2ShadowPanel3.Location = new System.Drawing.Point(761, 127);
             this.guna2ShadowPanel3.Name = "guna2ShadowPanel3";
             this.guna2ShadowPanel3.ShadowColor = System.Drawing.Color.Black;
             this.guna2ShadowPanel3.Size = new System.Drawing.Size(200, 100);
@@ -237,7 +237,7 @@
             this.guna2ShadowPanel4.Controls.Add(this.label7);
             this.guna2ShadowPanel4.Controls.Add(this.label3);
             this.guna2ShadowPanel4.FillColor = System.Drawing.Color.White;
-            this.guna2ShadowPanel4.Location = new System.Drawing.Point(690, 118);
+            this.guna2ShadowPanel4.Location = new System.Drawing.Point(527, 127);
             this.guna2ShadowPanel4.Name = "guna2ShadowPanel4";
             this.guna2ShadowPanel4.ShadowColor = System.Drawing.Color.Black;
             this.guna2ShadowPanel4.Size = new System.Drawing.Size(200, 100);
@@ -270,7 +270,7 @@
             this.guna2ShadowPanel5.Controls.Add(this.label6);
             this.guna2ShadowPanel5.Controls.Add(this.label2);
             this.guna2ShadowPanel5.FillColor = System.Drawing.Color.White;
-            this.guna2ShadowPanel5.Location = new System.Drawing.Point(461, 118);
+            this.guna2ShadowPanel5.Location = new System.Drawing.Point(298, 127);
             this.guna2ShadowPanel5.Name = "guna2ShadowPanel5";
             this.guna2ShadowPanel5.ShadowColor = System.Drawing.Color.Black;
             this.guna2ShadowPanel5.Size = new System.Drawing.Size(200, 100);
@@ -301,7 +301,7 @@
             // 
             this.guna2ShadowPanel6.BackColor = System.Drawing.Color.Transparent;
             this.guna2ShadowPanel6.FillColor = System.Drawing.Color.White;
-            this.guna2ShadowPanel6.Location = new System.Drawing.Point(253, 238);
+            this.guna2ShadowPanel6.Location = new System.Drawing.Point(90, 247);
             this.guna2ShadowPanel6.Name = "guna2ShadowPanel6";
             this.guna2ShadowPanel6.ShadowColor = System.Drawing.Color.Black;
             this.guna2ShadowPanel6.Size = new System.Drawing.Size(408, 205);
@@ -311,7 +311,7 @@
             // 
             this.guna2ShadowPanel7.BackColor = System.Drawing.Color.Transparent;
             this.guna2ShadowPanel7.FillColor = System.Drawing.Color.White;
-            this.guna2ShadowPanel7.Location = new System.Drawing.Point(717, 238);
+            this.guna2ShadowPanel7.Location = new System.Drawing.Point(554, 247);
             this.guna2ShadowPanel7.Name = "guna2ShadowPanel7";
             this.guna2ShadowPanel7.ShadowColor = System.Drawing.Color.Black;
             this.guna2ShadowPanel7.Size = new System.Drawing.Size(408, 205);
@@ -351,8 +351,9 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1228, 784);
-            this.Controls.Add(this.guna2CustomGradientPanel1);
+            this.ClientSize = new System.Drawing.Size(1497, 784);
+            this.Controls.Add(this.panelRight);
+            this.Controls.Add(this.guna2ShadowPanel1);
             this.Name = "MainForm";
             this.Text = "MainForm";
             this.guna2ShadowPanel1.ResumeLayout(false);
@@ -365,7 +366,7 @@
             this.guna2ShadowPanel4.PerformLayout();
             this.guna2ShadowPanel5.ResumeLayout(false);
             this.guna2ShadowPanel5.PerformLayout();
-            this.guna2CustomGradientPanel1.ResumeLayout(false);
+            this.panelRight.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
