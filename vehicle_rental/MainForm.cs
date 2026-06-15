@@ -16,260 +16,50 @@ namespace vehicle_rental
 {
     public partial class MainForm : Form
     {
-        // Class-level chart object so we can access and refresh it anytime
-        private Chart dashboardPieChart;
-
         public MainForm()
         {
             InitializeComponent();
         }
 
+        // Form එක මුලින්ම පූරණය වන විට (Load)
         private void MainForm_Load(object sender, EventArgs e)
         {
-            // Initialize and configure the pie chart programmatically
-            InitializeDashboardChart();
+            // 🎯 [කේතයෙන්ම පැනලය සෙට් කිරීම] 
+            // Form එක Maximize වන විට guna2CustomGradientPanel1 එකත් Form එක පුරාම ලස්සනට ලොකු වෙන්න Dock එක Fill කරනවා
+            guna2CustomGradientPanel1.Dock = DockStyle.Fill;
 
-            // Load all dashboard counts and plot chart when form loads
-            LoadDashboardCounts();
+            // මුලින්ම Dashboard Overview එක පෙන්වයි
+            LoadDashboardUserControl();
         }
 
-        private void InitializeDashboardChart()
+        // Dashboard Overview එක පූරණය කරන ක්‍රමය
+        private void LoadDashboardUserControl()
         {
-            // 1. Create Chart Object
-            dashboardPieChart = new Chart();
-            dashboardPieChart.Size = new Size(350, 250);     // Set an optimal visual size
-            dashboardPieChart.Location = new Point(170, 14); // Your exact requested location
-
-            // 2. Setup Chart Area
-            ChartArea chartArea = new ChartArea("MainArea");
-            dashboardPieChart.ChartAreas.Add(chartArea);
-
-            // 3. Setup Data Series
-            Series series = new Series("StatusSeries");
-            series.ChartType = SeriesChartType.Pie;
-            dashboardPieChart.Series.Add(series);
-
-            // 4. Set Visual Styling
-            series["PieLabelStyle"] = "Outside"; // Show labels pointing outwards
-            series.IsValueShownAsLabel = true;    // Show numeric values directly on slices
-            dashboardPieChart.Palette = ChartColorPalette.BrightPastel;
-
-            // 5. Add Legend
-            Legend legend = new Legend("MainLegend");
-            dashboardPieChart.Legends.Add(legend);
-
-            // 6. Inject the dynamic control into the form
-            this.Controls.Add(dashboardPieChart);
+            UC_DashboardOverview ucDashboard = new UC_DashboardOverview();
+            guna2CustomGradientPanel1.Controls.Clear();
+            ucDashboard.Dock = DockStyle.Fill;
+            guna2CustomGradientPanel1.Controls.Add(ucDashboard);
+            ucDashboard.BringToFront();
         }
 
-        private void UpdatePieChart(int onRent, int overdue, int returned, int pending)
+        // 🎯 [ඔබ ඇසිය යුතු ප්‍රධාන කොටස] - guna2Button1 ක්ලික් කළ විට ක්‍රියාත්මක වන කොටස
+        private void guna2Button1_Click(object sender, EventArgs e)
         {
-            // Clear old data points to prevent stack duplicates on dynamic updates
-            dashboardPieChart.Series["StatusSeries"].Points.Clear();
+            // 1. අලුත් Vehicle Fleet Dashboard එකෙහි Object එකක් මතකය තුළ සාදා ගන්නවා
+            UC_VehicleFleetDashboard ucFleet = new UC_VehicleFleetDashboard();
 
-            // Only add data points if there's data to avoid zero-rendering visual glitches
-            if (onRent > 0) dashboardPieChart.Series["StatusSeries"].Points.AddXY("On Rent", onRent);
-            if (overdue > 0) dashboardPieChart.Series["StatusSeries"].Points.AddXY("Overdue", overdue);
-            if (returned > 0) dashboardPieChart.Series["StatusSeries"].Points.AddXY("Returned", returned);
-            if (pending > 0) dashboardPieChart.Series["StatusSeries"].Points.AddXY("Pending", pending);
+            // 2. පැනලයේ දැනට පවතින පැරණි User Control එක (DashboardOverview) සම්පූර්ණයෙන්ම ඉවත් කරයි
+            guna2CustomGradientPanel1.Controls.Clear();
 
-            // Force the UI elements to redraw cleanly
-            dashboardPieChart.Invalidate();
+            // 3. අලුත් කන්ට්‍රෝල් එක පැනලයේ ප්‍රමාණයටම හැඩගැසීමට DockStyle.Fill ලබා දෙයි
+            ucFleet.Dock = DockStyle.Fill;
+
+            // 4. අලුත් කන්ට්‍රෝල් එක පැනලය ඇතුළට එකතු කර ඉදිරියටම රැගෙන එයි
+            guna2CustomGradientPanel1.Controls.Add(ucFleet);
+            ucFleet.BringToFront();
         }
 
-        private void LoadDashboardCounts()
-        {
-            try
-            {
-                // Get counts from database
-                int onRentCount = GetOnRentCount();
-                int overduesCount = GetOverduesCount();
-                int returnCount = GetReturnCount();
-                int pendingPaymentCount = GetPendingPaymentCount();
-
-                // Update labels
-                label5.Text = onRentCount.ToString();
-                label6.Text = overduesCount.ToString();
-                label7.Text = returnCount.ToString();
-                label8.Text = pendingPaymentCount.ToString();
-
-                // Update the programmatic Pie Chart dynamically with new DB values
-                UpdatePieChart(onRentCount, overduesCount, returnCount, pendingPaymentCount);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error loading dashboard data: " + ex.Message, "Error",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        // 1. Get On Rent Cars count (Currently rented out cars)
-        private int GetOnRentCount()
-        {
-            int count = 0;
-            string query = "SELECT COUNT(*) FROM Rentals WHERE ActualReturnDate IS NULL OR ActualReturnDate = ''";
-
-            using (SQLiteConnection conn = DatabaseHelper.GetConnection())
-            {
-                try
-                {
-                    conn.Open();
-                    using (SQLiteCommand cmd = new SQLiteCommand(query, conn))
-                    {
-                        count = Convert.ToInt32(cmd.ExecuteScalar());
-                    }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Error getting On Rent count: " + ex.Message);
-                }
-            }
-            return count;
-        }
-
-        // 2. Get Overdues count (Rentals past return date but not returned)
-        private int GetOverduesCount()
-        {
-            int count = 0;
-            string query = @"SELECT COUNT(*) FROM Rentals 
-                            WHERE (ActualReturnDate IS NULL OR ActualReturnDate = '')
-                            AND DATE(ExpectedReturnDate) < DATE('now')";
-
-            using (SQLiteConnection conn = DatabaseHelper.GetConnection())
-            {
-                try
-                {
-                    conn.Open();
-                    using (SQLiteCommand cmd = new SQLiteCommand(query, conn))
-                    {
-                        count = Convert.ToInt32(cmd.ExecuteScalar());
-                    }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Error getting Overdues count: " + ex.Message);
-                }
-            }
-            return count;
-        }
-
-        // 3. Get Return Count (Total number of completed returns - today or all time)
-        private int GetReturnCount()
-        {
-            int count = 0;
-            string query = @"SELECT COUNT(*) FROM Rentals 
-                            WHERE ActualReturnDate IS NOT NULL 
-                            AND ActualReturnDate != ''
-                            AND DATE(ActualReturnDate) = DATE('now')";
-
-            using (SQLiteConnection conn = DatabaseHelper.GetConnection())
-            {
-                try
-                {
-                    conn.Open();
-                    using (SQLiteCommand cmd = new SQLiteCommand(query, conn))
-                    {
-                        count = Convert.ToInt32(cmd.ExecuteScalar());
-                    }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Error getting Return count: " + ex.Message);
-                }
-            }
-            return count;
-        }
-
-        private int GetAllTimeReturnCount()
-        {
-            int count = 0;
-            string query = @"SELECT COUNT(*) FROM Rentals 
-                            WHERE ActualReturnDate IS NOT NULL 
-                            AND ActualReturnDate != ''";
-
-            using (SQLiteConnection conn = DatabaseHelper.GetConnection())
-            {
-                try
-                {
-                    conn.Open();
-                    using (SQLiteCommand cmd = new SQLiteCommand(query, conn))
-                    {
-                        count = Convert.ToInt32(cmd.ExecuteScalar());
-                    }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Error getting Return count: " + ex.Message);
-                }
-            }
-            return count;
-        }
-
-        // 4. Get Pending Payment count (Rentals with unpaid/partial payment)
-        private int GetPendingPaymentCount()
-        {
-            int count = 0;
-            string query = @"SELECT COUNT(DISTINCT r.RentalID) 
-                            FROM Rentals r
-                            LEFT JOIN Payments p ON r.RentalID = p.RentalID
-                            WHERE r.ActualReturnDate IS NULL 
-                            AND (p.PaymentID IS NULL OR p.PendingAmount > 0 OR p.Status = 'Pending')";
-
-            using (SQLiteConnection conn = DatabaseHelper.GetConnection())
-            {
-                try
-                {
-                    conn.Open();
-                    using (SQLiteCommand cmd = new SQLiteCommand(query, conn))
-                    {
-                        object result = cmd.ExecuteScalar();
-                        count = result != DBNull.Value ? Convert.ToInt32(result) : 0;
-                    }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Note: Pending payment feature needs Payments table. Using fallback.");
-                    count = GetPendingPaymentFallback();
-                }
-            }
-            return count;
-        }
-
-        private int GetPendingPaymentFallback()
-        {
-            int count = 0;
-            string query = "SELECT COUNT(*) FROM Rentals WHERE ActualReturnDate IS NULL OR ActualReturnDate = ''";
-
-            using (SQLiteConnection conn = DatabaseHelper.GetConnection())
-            {
-                try
-                {
-                    conn.Open();
-                    using (SQLiteCommand cmd = new SQLiteCommand(query, conn))
-                    {
-                        count = Convert.ToInt32(cmd.ExecuteScalar());
-                    }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Error in pending payment fallback: " + ex.Message);
-                }
-            }
-            return count;
-        }
-
-        // Refresh button click handler
-        private void btnRefresh_Click(object sender, EventArgs e)
-        {
-            LoadDashboardCounts();
-        }
-
-        // Timer to auto-refresh every 30 seconds
-        private void timer1_Tick(object sender, EventArgs e)
-        {
-            LoadDashboardCounts();
-        }
-
+        // --- හිස් ඉවෙන්ට් ප්ලේස්හෝල්ඩර්ස් (Design View බිඳ වැටීම වැළැක්වීමට පමණි) ---
         private void uC_DashboardOverview1_Load(object sender, EventArgs e) { }
         private void label5_Click(object sender, EventArgs e) { }
         private void label6_Click(object sender, EventArgs e) { }
