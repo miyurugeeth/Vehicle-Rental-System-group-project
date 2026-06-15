@@ -28,7 +28,10 @@ namespace vehicle_rental
             // Initialize and configure the pie chart programmatically
             InitializeDashboardChart();
 
-            // Load all dashboard counts and plot chart when User Control loads
+            // 🎯 [නව සැකසුම] Form එක Maximize වන විට Grid එකත් ලස්සනට Auto-Resize වීමට Anchor ලබා දීම
+            dataGridView1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+
+            // Load all dashboard counts, grid data, and plot chart when User Control loads
             LoadDashboardCounts();
         }
 
@@ -62,9 +65,6 @@ namespace vehicle_rental
             // 6. Inject the dynamic control into the User Control
             this.Controls.Add(dashboardPieChart);
             dashboardPieChart.BringToFront();
-
-
-
         }
 
         private void UpdatePieChart(int onRent, int overdue, int returned, int pending)
@@ -104,6 +104,21 @@ namespace vehicle_rental
 
                 // Update the programmatic Pie Chart dynamically with new DB values
                 UpdatePieChart(onRentCount, overduesCount, returnCount, pendingPaymentCount);
+
+                // 🎯 [🎯 ප්‍රධාන එකතු කිරීම] - DatabaseHelper එකෙන් ලැබෙන දත්ත DataGridView එකට සම්බන්ධ කිරීම
+                DataTable dtRecentTransactions = DatabaseHelper.GetRecentTransactions();
+                dataGridView1.DataSource = null;
+                dataGridView1.DataSource = dtRecentTransactions;
+
+                // 💅 Grid එක බැලූ බැල්මට වෘත්තීය මට්ටමකට හැඩගැන්වීම (Optional Styling)
+                dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+                dataGridView1.EnableHeadersVisualStyles = false;
+                dataGridView1.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(40, 40, 40);
+                dataGridView1.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+                dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+                dataGridView1.AllowUserToAddRows = false; // හිස් පේළි අලුතින් එකතු වීම වැළැක්වීමට
+
+                dataGridView1.Refresh();
             }
             catch (Exception ex)
             {
@@ -265,12 +280,8 @@ namespace vehicle_rental
         private void guna2CustomGradientPanel1_Paint(object sender, PaintEventArgs e) { }
         private void guna2Button1_Click(object sender, EventArgs e) { }
         private void guna2ShadowPanel2_Paint(object sender, PaintEventArgs e) { }
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e) { }
 
         #endregion
-
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
     }
 }
