@@ -150,26 +150,37 @@ namespace vehicle_rental
         {
             int totalVehicles = GetTotalVehiclesCount();
             int activeRentals = GetActiveRentalsCount();
+            int inMaintenance = GetVehiclesInMaintenanceCount();
 
+<<<<<<< Updated upstream
             // The total number of vehicles currently rented out is subtracted from the remaining number of vehicles.
             return totalVehicles - activeRentals;
+=======
+            // Available = Total - (Rented + Maintenance)
+            return totalVehicles - (activeRentals + inMaintenance);
+>>>>>>> Stashed changes
         }
 
         // Get count of vehicles currently in maintenance
         public static int GetVehiclesInMaintenanceCount()
         {
             int count = 0;
-            using (SqlConnection conn = new SqlConnection(connectionString))
+            // මෙතන අනිවාර්යයෙන්ම SQLiteConnection පාවිච්චි කරන්න
+            using (SQLiteConnection con = GetConnection())
             {
-                string query = @"SELECT COUNT(*) FROM Vehicles 
-                        WHERE Status = 'Maintenance' 
-                        OR Status = 'In Repair' 
-                        OR Status = 'Under Service'";
+                string query = "SELECT COUNT(*) FROM Vehicles WHERE Status = 'Maintenance'";
 
-                using (SqlCommand cmd = new SqlCommand(query, conn))
+                try
                 {
-                    conn.Open();
-                    count = Convert.ToInt32(cmd.ExecuteScalar());
+                    con.Open();
+                    using (SQLiteCommand cmd = new SQLiteCommand(query, con))
+                    {
+                        count = Convert.ToInt32(cmd.ExecuteScalar());
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Database Error: " + ex.Message);
                 }
             }
             return count;
@@ -179,16 +190,23 @@ namespace vehicle_rental
         public static int GetPendingReturnsCount()
         {
             int count = 0;
-            using (SqlConnection conn = new SqlConnection(connectionString))
+            using (SQLiteConnection con = GetConnection())
             {
-                string query = @"SELECT COUNT(*) FROM Rentals 
-                        WHERE Status = 'Active' 
-                        AND CAST(ReturnDate AS DATE) = CAST(GETDATE() AS DATE)";
-
-                using (SqlCommand cmd = new SqlCommand(query, conn))
+                try
                 {
-                    conn.Open();
-                    count = Convert.ToInt32(cmd.ExecuteScalar());
+                    con.Open();
+                    // Status වෙනුවට ActualReturnDate NULL ද කියලා බලන්න.
+                    // ReturnDate වෙනුවට ExpectedReturnDate පාවිච්චි කරන්න.
+                    string query = "SELECT COUNT(*) FROM Rentals WHERE ActualReturnDate IS NULL AND date(ExpectedReturnDate) = date('now')";
+
+                    using (SQLiteCommand cmd = new SQLiteCommand(query, con))
+                    {
+                        count = Convert.ToInt32(cmd.ExecuteScalar());
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Database Error: " + ex.Message);
                 }
             }
             return count;
@@ -200,6 +218,7 @@ namespace vehicle_rental
         {
             DataTable dt = new DataTable();
 
+<<<<<<< Updated upstream
             // We JOIN the Rentals, Customers, and Vehicles tables to get only the details we need.
             // ORDER BY RentalID DESC is used to get the most recent transaction first. LIMIT only gets the last 5 of 5.
             string query = @"SELECT 
@@ -217,6 +236,21 @@ namespace vehicle_rental
         INNER JOIN Vehicles v ON r.VehicleID = v.VehicleID
         ORDER BY r.RentalID DESC
         LIMIT 5";
+=======
+            // මෙතන JOIN දෙකක් තියෙනවා:
+            // 1. Rentals - Customers (Name එක ගන්න)
+            // 2. Rentals - Vehicles (VehicleNo එක ගන්න)
+            string query = @"SELECT 
+                        R.RentalID, 
+                        C.Name AS CustomerName, 
+                        V.VehicleNo, 
+                        R.RentDate, 
+                        CASE WHEN R.ActualReturnDate IS NULL OR R.ActualReturnDate = '' THEN 'Active' ELSE 'Returned' END AS Status 
+                     FROM Rentals R
+                     INNER JOIN Customers C ON R.CustomerID = C.CustomerID
+                     INNER JOIN Vehicles V ON R.VehicleID = V.VehicleID
+                     ORDER BY R.RentDate DESC LIMIT 5";
+>>>>>>> Stashed changes
 
             using (SQLiteConnection con = GetConnection())
             {
@@ -233,7 +267,7 @@ namespace vehicle_rental
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Dashboard Error (Recent Transactions): " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Dashboard Error: " + ex.Message);
                 }
             }
             return dt;

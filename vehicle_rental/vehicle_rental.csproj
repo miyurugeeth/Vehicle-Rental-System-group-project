@@ -124,6 +124,33 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+<<<<<<< Updated upstream
+=======
+    <Compile Include="UCReportsSystemTools .cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UCReportsSystemTools .Designer.cs">
+      <DependentUpon>UCReportsSystemTools .cs</DependentUpon>
+    </Compile>
+    <Compile Include="test.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="test.Designer.cs">
+      <DependentUpon>test.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UC_DashboardOverview.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UC_DashboardOverview.Designer.cs">
+      <DependentUpon>UC_DashboardOverview.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UC_SystemOverview.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UC_SystemOverview.Designer.cs">
+      <DependentUpon>UC_SystemOverview.cs</DependentUpon>
+    </Compile>
+>>>>>>> Stashed changes
     <Compile Include="UC_VehicleFleetDashboard.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -162,6 +189,19 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+<<<<<<< Updated upstream
+=======
+    <EmbeddedResource Include="UCReportsSystemTools .resx">
+      <DependentUpon>UCReportsSystemTools .cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="test.resx">
+      <DependentUpon>test.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UC_DashboardOverview.resx" />
+    <EmbeddedResource Include="UC_SystemOverview.resx">
+      <DependentUpon>UC_SystemOverview.cs</DependentUpon>
+    </EmbeddedResource>
+>>>>>>> Stashed changes
     <EmbeddedResource Include="UC_VehicleFleetDashboard.resx">
       <DependentUpon>UC_VehicleFleetDashboard.cs</DependentUpon>
     </EmbeddedResource>

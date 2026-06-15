@@ -15,9 +15,13 @@ namespace vehicle_rental
 {
     public partial class MainForm : Form
     {
+<<<<<<< Updated upstream
         // Class-level chart object so we can access and refresh it anytime
         private Chart dashboardPieChart;
 
+=======
+       
+>>>>>>> Stashed changes
         public MainForm()
         {
             InitializeComponent();
@@ -28,6 +32,7 @@ namespace vehicle_rental
             // Initialize and configure the pie chart programmatically
             InitializeDashboardChart();
 
+<<<<<<< Updated upstream
             // Load all dashboard counts and plot chart when form loads
             LoadDashboardCounts();
         }
@@ -60,6 +65,14 @@ namespace vehicle_rental
             // 6. Inject the dynamic control into the form
             this.Controls.Add(dashboardPieChart);
         }
+=======
+            // මුලින්ම Dashboard Overview එක පෙන්වයි
+           
+        }
+
+        // Dashboard Overview එක පූරණය කරන ක්‍රමය
+        
+>>>>>>> Stashed changes
 
         private void UpdatePieChart(int onRent, int overdue, int returned, int pending)
         {
@@ -281,9 +294,66 @@ namespace vehicle_rental
 
         }
 
+<<<<<<< Updated upstream
+=======
+      
+
+>>>>>>> Stashed changes
         private void guna2Button5_Click(object sender, EventArgs e)
         {
 
+<<<<<<< Updated upstream
+=======
+            // 2. පැනල් එකේ නම panelRight නම්, ඒකේ තියෙන පරණ ඒවා අයින් කරන්න
+            // (ඔයාගේ Design එකේ පැනල් එකේ Name එක හරියටම check කරගන්න)
+           
+
+            // 4. Control එක උඩට ගන්න
+            fleetDash.BringToFront();
+        }
+
+        private void guna2Button2_Click(object sender, EventArgs e)
+        {
+           
+        }
+
+        private void guna2Button5_Click_1(object sender, EventArgs e)
+        {
+            panalRight.Controls.Clear();
+
+            // 2. ඔයාගේ User Control එකේ Instance එකක් හදන්න
+            UC_VehicleFleetDashboard fleetDashboard = new UC_VehicleFleetDashboard();
+
+            // 3. පැනල් එකට එයාව ඇඩ් කරන්න
+            fleetDashboard.Dock = DockStyle.Fill; // පැනල් එකේ හැමතැනම පිරෙන්න
+            panalRight.Controls.Add(fleetDashboard);
+        }
+
+        private void guna2Button6_Click(object sender, EventArgs e)
+        {
+
+            panalRight.Controls.Clear();
+
+            // 2. ඔයාගේ User Control එකේ Instance එකක් හදන්න
+            Reports___System_Tools fleetDashboard = new Reports___System_Tools();
+
+            // 3. පැනල් එකට එයාව ඇඩ් කරන්න
+            fleetDashboard.Dock = DockStyle.Fill; // පැනල් එකේ හැමතැනම පිරෙන්න
+            panalRight.Controls.Add(fleetDashboard);
+        }
+
+        private void guna2Button1_Click_1(object sender, EventArgs e)
+        {
+            panalRight.Controls.Clear();
+
+            // 2. ඔයාගේ User Control එකේ Instance එකක් හදන්න
+            UC_DashboardOverview fleetDashboard = new UC_DashboardOverview();
+
+            // 3. පැනල් එකට එයාව ඇඩ් කරන්න
+            fleetDashboard.Dock = DockStyle.Fill; // පැනල් එකේ හැමතැනම පිරෙන්න
+            panalRight.Controls.Add(fleetDashboard);
+           
+>>>>>>> Stashed changes
         }
     }
 }

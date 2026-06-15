@@ -29,12 +29,12 @@
         private void InitializeComponent()
         {
             this.guna2ShadowPanel1 = new Guna.UI2.WinForms.Guna2ShadowPanel();
+            this.guna2Button6 = new Guna.UI2.WinForms.Guna2Button();
             this.guna2Button5 = new Guna.UI2.WinForms.Guna2Button();
             this.guna2Button4 = new Guna.UI2.WinForms.Guna2Button();
             this.guna2Button3 = new Guna.UI2.WinForms.Guna2Button();
             this.guna2Button2 = new Guna.UI2.WinForms.Guna2Button();
             this.guna2Button1 = new Guna.UI2.WinForms.Guna2Button();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.guna2ShadowPanel2 = new Guna.UI2.WinForms.Guna2ShadowPanel();
             this.label5 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -50,13 +50,21 @@
             this.guna2ShadowPanel6 = new Guna.UI2.WinForms.Guna2ShadowPanel();
             this.guna2ShadowPanel7 = new Guna.UI2.WinForms.Guna2ShadowPanel();
             this.guna2CustomGradientPanel1 = new Guna.UI2.WinForms.Guna2CustomGradientPanel();
+<<<<<<< Updated upstream
+=======
+            this.panalRight = new Guna.UI2.WinForms.Guna2Panel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+>>>>>>> Stashed changes
             this.guna2ShadowPanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.guna2ShadowPanel2.SuspendLayout();
             this.guna2ShadowPanel3.SuspendLayout();
             this.guna2ShadowPanel4.SuspendLayout();
             this.guna2ShadowPanel5.SuspendLayout();
             this.guna2CustomGradientPanel1.SuspendLayout();
+<<<<<<< Updated upstream
+=======
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+>>>>>>> Stashed changes
             this.SuspendLayout();
             // 
             // guna2ShadowPanel1
@@ -72,8 +80,24 @@
             this.guna2ShadowPanel1.Location = new System.Drawing.Point(0, 3);
             this.guna2ShadowPanel1.Name = "guna2ShadowPanel1";
             this.guna2ShadowPanel1.ShadowColor = System.Drawing.Color.Black;
-            this.guna2ShadowPanel1.Size = new System.Drawing.Size(200, 776);
+            this.guna2ShadowPanel1.Size = new System.Drawing.Size(211, 776);
             this.guna2ShadowPanel1.TabIndex = 1;
+            // 
+            // guna2Button6
+            // 
+            this.guna2Button6.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.guna2Button6.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.guna2Button6.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.guna2Button6.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.guna2Button6.FillColor = System.Drawing.Color.DarkViolet;
+            this.guna2Button6.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.guna2Button6.ForeColor = System.Drawing.Color.White;
+            this.guna2Button6.Location = new System.Drawing.Point(6, 540);
+            this.guna2Button6.Name = "guna2Button6";
+            this.guna2Button6.Size = new System.Drawing.Size(193, 45);
+            this.guna2Button6.TabIndex = 6;
+            this.guna2Button6.Text = "Reports";
+            this.guna2Button6.Click += new System.EventHandler(this.guna2Button6_Click);
             // 
             // guna2Button5
             // 
@@ -88,8 +112,13 @@
             this.guna2Button5.Name = "guna2Button5";
             this.guna2Button5.Size = new System.Drawing.Size(192, 45);
             this.guna2Button5.TabIndex = 5;
+<<<<<<< Updated upstream
             this.guna2Button5.Text = "guna2Button5";
             this.guna2Button5.Click += new System.EventHandler(this.guna2Button5_Click);
+=======
+            this.guna2Button5.Text = "Vehicle Fleet";
+            this.guna2Button5.Click += new System.EventHandler(this.guna2Button5_Click_1);
+>>>>>>> Stashed changes
             // 
             // guna2Button4
             // 
@@ -104,7 +133,7 @@
             this.guna2Button4.Name = "guna2Button4";
             this.guna2Button4.Size = new System.Drawing.Size(192, 45);
             this.guna2Button4.TabIndex = 4;
-            this.guna2Button4.Text = "guna2Button4";
+            this.guna2Button4.Text = "Rental & Return";
             // 
             // guna2Button3
             // 
@@ -119,7 +148,7 @@
             this.guna2Button3.Name = "guna2Button3";
             this.guna2Button3.Size = new System.Drawing.Size(192, 45);
             this.guna2Button3.TabIndex = 3;
-            this.guna2Button3.Text = "guna2Button3";
+            this.guna2Button3.Text = "Payments & Billing";
             // 
             // guna2Button2
             // 
@@ -134,7 +163,7 @@
             this.guna2Button2.Name = "guna2Button2";
             this.guna2Button2.Size = new System.Drawing.Size(192, 45);
             this.guna2Button2.TabIndex = 2;
-            this.guna2Button2.Text = "guna2Button2";
+            this.guna2Button2.Text = "Customer Directory";
             // 
             // guna2Button1
             // 
@@ -149,6 +178,7 @@
             this.guna2Button1.Name = "guna2Button1";
             this.guna2Button1.Size = new System.Drawing.Size(192, 45);
             this.guna2Button1.TabIndex = 1;
+<<<<<<< Updated upstream
             this.guna2Button1.Text = "guna2Button1";
             // 
             // pictureBox1
@@ -160,6 +190,10 @@
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
+=======
+            this.guna2Button1.Text = "Dashbord Overview";
+            this.guna2Button1.Click += new System.EventHandler(this.guna2Button1_Click_1);
+>>>>>>> Stashed changes
             // 
             // guna2ShadowPanel2
             // 
@@ -316,7 +350,6 @@
             // guna2CustomGradientPanel1
             // 
             this.guna2CustomGradientPanel1.Controls.Add(this.guna2ShadowPanel7);
-            this.guna2CustomGradientPanel1.Controls.Add(this.guna2ShadowPanel1);
             this.guna2CustomGradientPanel1.Controls.Add(this.guna2ShadowPanel4);
             this.guna2CustomGradientPanel1.Controls.Add(this.guna2ShadowPanel6);
             this.guna2CustomGradientPanel1.Controls.Add(this.guna2ShadowPanel3);
@@ -328,16 +361,42 @@
             this.guna2CustomGradientPanel1.TabIndex = 6;
             this.guna2CustomGradientPanel1.Paint += new System.Windows.Forms.PaintEventHandler(this.guna2CustomGradientPanel1_Paint);
             // 
+<<<<<<< Updated upstream
+=======
+            // panalRight
+            // 
+            this.panalRight.Location = new System.Drawing.Point(203, 3);
+            this.panalRight.Name = "panalRight";
+            this.panalRight.Size = new System.Drawing.Size(1193, 787);
+            this.panalRight.TabIndex = 2;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackColor = System.Drawing.Color.Indigo;
+            this.pictureBox1.Image = global::vehicle_rental.Properties.Resources.ChatGPT_Image_Jun_9__2026__08_24_13_PM1;
+            this.pictureBox1.Location = new System.Drawing.Point(0, -3);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(201, 158);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabStop = false;
+            // 
+>>>>>>> Stashed changes
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+<<<<<<< Updated upstream
             this.ClientSize = new System.Drawing.Size(1228, 784);
             this.Controls.Add(this.guna2CustomGradientPanel1);
+=======
+            this.ClientSize = new System.Drawing.Size(1497, 784);
+            this.Controls.Add(this.panalRight);
+            this.Controls.Add(this.guna2ShadowPanel1);
+>>>>>>> Stashed changes
             this.Name = "MainForm";
             this.Text = "MainForm";
             this.guna2ShadowPanel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.guna2ShadowPanel2.ResumeLayout(false);
             this.guna2ShadowPanel2.PerformLayout();
             this.guna2ShadowPanel3.ResumeLayout(false);
@@ -347,6 +406,10 @@
             this.guna2ShadowPanel5.ResumeLayout(false);
             this.guna2ShadowPanel5.PerformLayout();
             this.guna2CustomGradientPanel1.ResumeLayout(false);
+<<<<<<< Updated upstream
+=======
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+>>>>>>> Stashed changes
             this.ResumeLayout(false);
 
         }
@@ -374,5 +437,10 @@
         private Guna.UI2.WinForms.Guna2Button guna2Button2;
         private Guna.UI2.WinForms.Guna2Button guna2Button1;
         private Guna.UI2.WinForms.Guna2CustomGradientPanel guna2CustomGradientPanel1;
+<<<<<<< Updated upstream
+=======
+        private Guna.UI2.WinForms.Guna2Button guna2Button6;
+        private Guna.UI2.WinForms.Guna2Panel panalRight;
+>>>>>>> Stashed changes
     }
 }
