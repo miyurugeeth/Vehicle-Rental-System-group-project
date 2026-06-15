@@ -275,5 +275,10 @@ namespace vehicle_rental
         private void label7_Click(object sender, EventArgs e) { }
         private void label8_Click(object sender, EventArgs e) { }
         private void uC_VehicleFleetDashboard1_Load(object sender, EventArgs e) { }
+
+        private void guna2CustomGradientPanel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }
