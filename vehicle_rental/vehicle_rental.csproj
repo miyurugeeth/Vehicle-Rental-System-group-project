@@ -135,9 +135,28 @@
     <Compile Include="UC_VehicleFleetDashboard.Designer.cs">
       <DependentUpon>UC_VehicleFleetDashboard.cs</DependentUpon>
     </Compile>
+
     <Content Include="Resources\images1.png" />
     <Content Include="Resources\images11.PNG" />
     <Content Include="Resources\images12.PNG" />
+
+    <None Include="Resources\png-transparent-purple-violet-magenta-area-rectangle-lines-purple-angle-text.png" />
+    <None Include="Resources\car Image Jun 9, 2026, 06_39_03 PM%281%29.jpg" />
+    <None Include="Resources\ChatGPT Image Jun 9, 2026, 08_24_13 PM1.png" />
+    <None Include="Resources\ChatGPT Image Jun 9, 2026, 08_24_13 PM.png" />
+    <None Include="Resources\computer-icons-password-login-user-padlock-removebg-preview.png" />
+    <None Include="Resources\password-manager-computer-icons-password-thumbnail.jpg" />
+    <None Include="Resources\cg-password-comments-lock-free-icon-11563211408fxujbvxfne1.png" />
+    <None Include="Resources\1081856-2002.png" />
+    <None Include="Resources\cg-password-comments-lock-free-icon-11563211408fxujbvxfne.png" />
+    <None Include="Resources\computer-icons-password-login-user-padlock.jpg" />
+    <None Include="Resources\pngtree-vector-lock-icon-png-image_5154441.jpg" />
+    <None Include="Resources\computer-icons-password-password-thumbnail.jpg" />
+    <None Include="Resources\pngtree-vector-lock-icon-png-image_515444.jpg" />
+    <None Include="Resources\1081856-2001.png" />
+    <None Include="Resources\1081856-200.png" />
+    <None Include="Resources\car Image Jun 9, 2026, 06_39_03 PM.png" />
+
     <EmbeddedResource Include="LogingForm.resx">
       <DependentUpon>LogingForm.cs</DependentUpon>
     </EmbeddedResource>

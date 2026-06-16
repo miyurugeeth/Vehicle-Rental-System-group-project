@@ -71,11 +71,11 @@ namespace vehicle_rental
         }
 
 
-        // A. මුළු වාහන ගණන (Total Vehicles)
+        // (Total Vehicles)
         public static int GetTotalVehiclesCount()
         {
             int count = 0;
-            string query = "SELECT COUNT(*) FROM Vehicles"; // ⚠️ ටේබල් නම වෙනස් නම් මාරු කරන්න
+            string query = "SELECT COUNT(*) FROM Vehicles";
 
             using (SQLiteConnection con = GetConnection())
             {
@@ -95,11 +95,11 @@ namespace vehicle_rental
             return count;
         }
 
-        // B. දැනට කුලියට දී ඇති වාහන ගණන (Active Rentals)
+        // (Active Rentals)
         public static int GetActiveRentalsCount()
         {
             int count = 0;
-            // ⚠️ උඹේ Rentals ටේබල් එකේ Active ඒවා බලන කන්ඩිෂන් එක දාන්න (උදා: Status = 'Active' හෝ 'Rented')
+            
             string query = "SELECT COUNT(*) FROM Rentals WHERE ActualReturnDate IS NULL OR ActualReturnDate = ''";
 
             using (SQLiteConnection con = GetConnection())
@@ -120,11 +120,11 @@ namespace vehicle_rental
             return count;
         }
 
-        // C. මුළු පාරිභෝගිකයින්/යූසර්ලා ගණන (Total Users)
+        // (Total Users)
         public static int GetTotalUsersCount()
         {
             int count = 0;
-            string query = "SELECT COUNT(*) FROM Users"; // ⚠️ උඹේ Users/Customers ටේබල් එකේ නම දාන්න
+            string query = "SELECT COUNT(*) FROM Users"; 
 
             using (SQLiteConnection con = GetConnection())
             {
@@ -144,24 +144,23 @@ namespace vehicle_rental
             return count;
         }
 
-        // D. දැනට ඉතිරිව ඇති වාහන ගණන (Available Cars)
+        //(Available Cars)
         public static int GetAvailableCarsCount()
         {
             int totalVehicles = GetTotalVehiclesCount();
             int activeRentals = GetActiveRentalsCount();
 
-            // මුළු වාහන ගණනෙන් දැනට කුලියට දීපුවා අඩු කරාම ඉතිරි වාහන ගණන එනවා
+            // The total number of vehicles currently rented out is subtracted from the remaining number of vehicles.
             return totalVehicles - activeRentals;
         }
         public static DataTable GetRecentTransactions()
         {
             DataTable dt = new DataTable();
 
-            // Rentals, Customers, සහ Vehicles ටේබල් 3ම JOIN කරලා අපිට ඕන විස්තර විතරක් ගන්නවා.
-            // ORDER BY RentalID DESC දාන්නේ අලුත්ම ට්‍රාන්සැක්ෂන් උඩටම එන්න. LIMIT 5න් අන්තිම 5 විතරක් ගන්නවා.
-            string query = @"
-        SELECT 
-            '#RNT-' || r.RentalID AS [Rental ID],
+            // We JOIN the Rentals, Customers, and Vehicles tables to get only the details we need.
+            // ORDER BY RentalID DESC is used to get the most recent transaction first. LIMIT only gets the last 5 of 5.
+            string query = @"SELECT 
+           '#RNT-' || r.RentalID AS [Rental ID],
             c.Name AS [Customer Name],
             v.VehicleNo AS [Vehicle Reg],
             r.ExpectedReturnDate AS [Expected Return],
