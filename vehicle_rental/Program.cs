@@ -14,12 +14,19 @@ namespace vehicle_rental
         [STAThread]
         static void Main()
         {
+<<<<<<< HEAD
             AppDomain.CurrentDomain.SetData("DataDirectory", Application.StartupPath);
+=======
+>>>>>>> origin/BillingSystem
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             AppDomain.CurrentDomain.SetData("DataDirectory",Application.StartupPath
    );
+<<<<<<< HEAD
             Application.Run(new LoginForm());
+=======
+            Application.Run(new Test2());
+>>>>>>> origin/BillingSystem
         }
     }
 }

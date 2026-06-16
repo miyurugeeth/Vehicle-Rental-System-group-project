@@ -278,6 +278,7 @@ namespace vehicle_rental
                 MessageBoxButtons.OK,
                 MessageBoxIcon.Information);
         }
+<<<<<<< HEAD
 
         private void panel1_Paint(object sender, PaintEventArgs e)
         {
@@ -348,5 +349,7 @@ namespace vehicle_rental
         {
 
         }
+=======
+>>>>>>> origin/BillingSystem
     }
 }

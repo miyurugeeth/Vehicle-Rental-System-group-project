@@ -9,7 +9,11 @@ namespace vehicle_rental
     public static class DatabaseHelper
     {
         // Location of the database file (Relative Path)
+<<<<<<< HEAD
         private static string connectionString = @"Data Source=C:\Users\Lenovo\Downloads\Vehicle-Rental-System-group-project-main\Vehicle-Rental-System-group-project-main\vehicle_rental\Database\vehicle_rental.db;Version=3;";
+=======
+        private static string connectionString = @"Data Source=C:\Users\user\OneDrive\Desktop\Our Project\Billing Payement\vehicle_rental\Database\vehicle_rental.db;Version=3;";
+>>>>>>> origin/BillingSystem
 
         // 1. The function that connects and opens the database
         public static SQLiteConnection GetConnection()
@@ -42,7 +46,11 @@ namespace vehicle_rental
             }
         }
 
+<<<<<<< HEAD
         // 3. Common Function (Select) to read data and return DataTable
+=======
+        // 3. Common Function (Select) to read data
+>>>>>>> origin/BillingSystem
         public static DataTable ExecuteQuery(string query, SQLiteParameter[] parameters = null)
         {
             DataTable dt = new DataTable();
@@ -72,7 +80,10 @@ namespace vehicle_rental
         }
 
 
+<<<<<<< HEAD
         // A. Total Vehicles Count from Vehicles Table
+=======
+>>>>>>> origin/BillingSystem
         // (Total Vehicles)
         public static int GetTotalVehiclesCount()
         {
@@ -97,8 +108,11 @@ namespace vehicle_rental
             return count;
         }
 
+<<<<<<< HEAD
         // B. Active Rentals Count from Rentals Table
        
+=======
+>>>>>>> origin/BillingSystem
         // (Active Rentals)
         public static int GetActiveRentalsCount()
         {
@@ -124,9 +138,12 @@ namespace vehicle_rental
             return count;
         }
 
+<<<<<<< HEAD
         // C. Total Customers/Users Count
        
          
+=======
+>>>>>>> origin/BillingSystem
         // (Total Users)
         public static int GetTotalUsersCount()
         {
@@ -151,13 +168,17 @@ namespace vehicle_rental
             return count;
         }
 
+<<<<<<< HEAD
         // D. Available Cars Count
+=======
+>>>>>>> origin/BillingSystem
         //(Available Cars)
         public static int GetAvailableCarsCount()
         {
             int totalVehicles = GetTotalVehiclesCount();
             int activeRentals = GetActiveRentalsCount();
 
+<<<<<<< HEAD
             return totalVehicles - activeRentals;
         }
 
@@ -165,10 +186,17 @@ namespace vehicle_rental
         // The total number of vehicles currently rented out is subtracted from the remaining number of vehicles.
 
 
+=======
+            // The total number of vehicles currently rented out is subtracted from the remaining number of vehicles.
+            return totalVehicles - activeRentals;
+        }
+
+>>>>>>> origin/BillingSystem
         // Get count of vehicles currently in maintenance
         public static int GetVehiclesInMaintenanceCount()
         {
             int count = 0;
+<<<<<<< HEAD
             string query = "SELECT COUNT(*) FROM Vehicles WHERE Status = 'Maintenance'";
             using (SQLiteConnection con = GetConnection())
             {
@@ -184,6 +212,19 @@ namespace vehicle_rental
                 {
                     MessageBox.Show("Dashboard Error (Maintenance): " + ex.Message, "Error",
                         MessageBoxButtons.OK, MessageBoxIcon.Error);
+=======
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                string query = @"SELECT COUNT(*) FROM Vehicles 
+                        WHERE Status = 'Maintenance' 
+                        OR Status = 'In Repair' 
+                        OR Status = 'Under Service'";
+
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    conn.Open();
+                    count = Convert.ToInt32(cmd.ExecuteScalar());
+>>>>>>> origin/BillingSystem
                 }
             }
             return count;
@@ -193,6 +234,7 @@ namespace vehicle_rental
         public static int GetPendingReturnsCount()
         {
             int count = 0;
+<<<<<<< HEAD
             // SQLite වල GETDATE() නෑ — date('now') use කරනවා
             string query = @"SELECT COUNT(*) FROM Rentals 
                      WHERE Status = 'Active' 
@@ -211,6 +253,18 @@ namespace vehicle_rental
                 {
                     MessageBox.Show("Dashboard Error (Pending Returns): " + ex.Message, "Error",
                         MessageBoxButtons.OK, MessageBoxIcon.Error);
+=======
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                string query = @"SELECT COUNT(*) FROM Rentals 
+                        WHERE Status = 'Active' 
+                        AND CAST(ReturnDate AS DATE) = CAST(GETDATE() AS DATE)";
+
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    conn.Open();
+                    count = Convert.ToInt32(cmd.ExecuteScalar());
+>>>>>>> origin/BillingSystem
                 }
             }
             return count;
@@ -220,6 +274,7 @@ namespace vehicle_rental
 
         public static DataTable GetRecentTransactions()
         {
+<<<<<<< HEAD
             string query = @"
     SELECT 
         r.RentalID,
@@ -243,6 +298,48 @@ namespace vehicle_rental
         }
 
         // F. Legacy Support Method to Fetch DataTable Using Custom Row Queries
+=======
+            DataTable dt = new DataTable();
+
+            // We JOIN the Rentals, Customers, and Vehicles tables to get only the details we need.
+            // ORDER BY RentalID DESC is used to get the most recent transaction first. LIMIT only gets the last 5 of 5.
+            string query = @"SELECT 
+           '#RNT-' || r.RentalID AS [Rental ID],
+            c.Name AS [Customer Name],
+            v.VehicleNo AS [Vehicle Reg],
+            r.ExpectedReturnDate AS [Expected Return],
+            CASE 
+                WHEN r.ActualReturnDate IS NOT NULL AND r.ActualReturnDate != '' THEN 'Returned'
+                WHEN r.ExpectedReturnDate = date('now') THEN 'Due Today'
+                ELSE 'Active'
+            END AS [Status]
+        FROM Rentals r
+        INNER JOIN Customers c ON r.CustomerID = c.CustomerID
+        INNER JOIN Vehicles v ON r.VehicleID = v.VehicleID
+        ORDER BY r.RentalID DESC
+        LIMIT 5";
+
+            using (SQLiteConnection con = GetConnection())
+            {
+                try
+                {
+                    con.Open();
+                    using (SQLiteCommand cmd = new SQLiteCommand(query, con))
+                    {
+                        using (SQLiteDataAdapter da = new SQLiteDataAdapter(cmd))
+                        {
+                            da.Fill(dt);
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Dashboard Error (Recent Transactions): " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            return dt;
+        }
+>>>>>>> origin/BillingSystem
         public static DataTable GetData(string query)
         {
             using (SQLiteConnection conn = new SQLiteConnection(connectionString))
@@ -254,8 +351,13 @@ namespace vehicle_rental
             }
         }
 
+<<<<<<< HEAD
         // G. Renamed to avoid loop conflict with the primary ExecuteQuery method
         public static void ExecuteNonQueryLocal(string query)
+=======
+        // 2. INSERT/UPDATE/DELETE query සඳහා ExecuteQuery Method එක
+        public static void ExecuteQuery(string query)
+>>>>>>> origin/BillingSystem
         {
             using (SQLiteConnection conn = new SQLiteConnection(connectionString))
             {
@@ -264,6 +366,7 @@ namespace vehicle_rental
                 cmd.ExecuteNonQuery();
             }
         }
+<<<<<<< HEAD
 
         // I. Fetch and Accumulate Aggregated Monthly Incomes for Column Charts
         public static DataTable GetMonthlyIncome()
@@ -324,3 +427,7 @@ public static DataTable SearchCustomers(string searchText)
     return ExecuteQuery(query, parameters);
 }
 }}
+=======
+    }
+}
+>>>>>>> origin/BillingSystem
