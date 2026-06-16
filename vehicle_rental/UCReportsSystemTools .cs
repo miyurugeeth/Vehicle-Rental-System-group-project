@@ -21,15 +21,14 @@ namespace vehicle_rental
         public Reports___System_Tools()
         {
             InitializeComponent();
+            this.BackColor = Color.FromArgb(182, 170, 255);
         }
 
         private void Reports___System_Tools_Load(object sender, EventArgs e)
         {
-            this.BackColor = Color.FromArgb(41, 0, 65);
+            this.BackColor = Color.FromArgb(182, 170, 255);
 
-            // ==========================================================
             // 1. MONTHLY INCOME CHART STYLING
-            // ==========================================================
             chartIncome.BackColor = Color.Transparent;
             chartIncome.ChartAreas[0].BackColor = Color.Transparent;
             chartIncome.ChartAreas[0].AxisX.MajorGrid.Enabled = false;
@@ -42,9 +41,7 @@ namespace vehicle_rental
             chartIncome.Series[0].Palette = ChartColorPalette.None;
             chartIncome.Series[0].Color = Color.FromArgb(171, 112, 247);
 
-            // ==========================================================
             // 2. FLEET UTILIZATION CHART STYLING (FIXED VISIBILITY)
-            // ==========================================================
             chartFleet.BackColor = Color.Transparent;
             chartFleet.ChartAreas[0].BackColor = Color.Transparent;
             
@@ -128,9 +125,7 @@ namespace vehicle_rental
             }
         }
 
-        // ==========================================================
         // 3. DYNAMIC QUERY GENERATOR
-        // ==========================================================
         private string GetCustomQuery(string reportType, DateTime start, DateTime end)
         {
             string query = "";
@@ -200,9 +195,8 @@ namespace vehicle_rental
             return query;
         }
 
-        // ==========================================================
+        
         // 4. BUTTON: GENERATE PDF REPORT
-        // ==========================================================
         private void guna2Button2_Click(object sender, EventArgs e)
         {
             if (guna2ComboBox1.SelectedItem == null)
@@ -217,7 +211,7 @@ namespace vehicle_rental
 
             string query = GetCustomQuery(reportType, startDate, endDate);
             
-            // FIXED 🚀: Explicitly uses DatabaseHelper's multi-parameter query pipeline method to avoid data table mismatches
+            // Explicitly uses DatabaseHelper's multi-parameter query pipeline method to avoid data table mismatches
             DataTable dtReport = DatabaseHelper.ExecuteQuery(query, null);
 
             if (dtReport == null || dtReport.Rows.Count == 0)
@@ -299,9 +293,7 @@ namespace vehicle_rental
             }
         }
 
-        // ==========================================================
-        // 5. BUTTON: EXPORT AS CSV
-        // ==========================================================
+       
         private void btnExportCSV_Click_Click(object sender, EventArgs e)
         {
             if (guna2ComboBox1.SelectedItem == null) return;
@@ -312,7 +304,7 @@ namespace vehicle_rental
 
             string query = GetCustomQuery(reportType, startDate, endDate);
             
-            // FIXED 🚀: Explicitly routing query through data-table adapter pipeline methods
+            // Explicitly routing query through data-table adapter pipeline methods
             DataTable dt = DatabaseHelper.ExecuteQuery(query, null);
 
             if (dt == null || dt.Rows.Count == 0)
@@ -359,9 +351,7 @@ namespace vehicle_rental
             }
         }
 
-        // ==========================================================
-        // 6. BUTTON: EMAIL REPORT
-        // ==========================================================
+        
         private void guna2Button2_Click_1(object sender, EventArgs e)
         {
             if (guna2ComboBox1.SelectedItem == null)
@@ -382,7 +372,7 @@ namespace vehicle_rental
             {
                 string query = GetCustomQuery(reportType, startDate, endDate);
                 
-                // FIXED 🚀: Corrected background database query stream link logic
+                //Corrected background database query stream link logic
                 DataTable dtReport = DatabaseHelper.ExecuteQuery(query, null);
 
                 if (dtReport == null || dtReport.Rows.Count == 0)
@@ -445,9 +435,7 @@ namespace vehicle_rental
             }
         }
 
-        // ==========================================================
-        // 7. SYSTEM BACKUP & RESTORE MODULES
-        // ==========================================================
+       
         private void guna2Button5_Click(object sender, EventArgs e)
         {
             SaveFileDialog sfd = new SaveFileDialog();
@@ -512,5 +500,10 @@ namespace vehicle_rental
         private void label4_Click(object sender, EventArgs e) { }
         private void label1_Click(object sender, EventArgs e) { }
         private void guna2Separator1_Click(object sender, EventArgs e) { }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
