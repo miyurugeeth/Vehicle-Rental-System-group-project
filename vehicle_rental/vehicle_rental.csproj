@@ -206,6 +206,12 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="test2.resx">
+      <DependentUpon>test2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UCRental&amp;Return .resx">
+      <DependentUpon>UCRental&amp;Return .cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UCReportsSystemTools .resx">
       <DependentUpon>UCReportsSystemTools .cs</DependentUpon>
     </EmbeddedResource>
