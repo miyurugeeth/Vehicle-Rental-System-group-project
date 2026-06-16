@@ -21,6 +21,7 @@ namespace vehicle_rental
             InitializeComponent();
         }
 
+
         // Form එක මුලින්ම පූරණය වන විට (Load)
         private void MainForm_Load(object sender, EventArgs e)
         {
@@ -35,11 +36,7 @@ namespace vehicle_rental
         // Dashboard Overview එක පූරණය කරන ක්‍රමය
         private void LoadDashboardUserControl()
         {
-            UC_DashboardOverview ucDashboard = new UC_DashboardOverview();
-            guna2CustomGradientPanel1.Controls.Clear();
-            ucDashboard.Dock = DockStyle.Fill;
-            guna2CustomGradientPanel1.Controls.Add(ucDashboard);
-            ucDashboard.BringToFront();
+           
         }
 
         // 🎯 [ඔබ ඇසිය යුතු ප්‍රධාන කොටස] - guna2Button1 ක්ලික් කළ විට ක්‍රියාත්මක වන කොටස
@@ -72,10 +69,7 @@ namespace vehicle_rental
 
         }
 
-        private void guna2Button1_Click(object sender, EventArgs e)
-        {
-            
-        }
+        
 
         private void guna2Button5_Click(object sender, EventArgs e)
         {
@@ -96,6 +90,11 @@ namespace vehicle_rental
 
         private void guna2Button2_Click(object sender, EventArgs e)
         {
+           
+        }
+
+        private void guna2Button6_Click(object sender, EventArgs e)
+        {
             MessageBox.Show("Clicked!");
             Reports___System_Tools fleetDash = new Reports___System_Tools();
 
@@ -109,6 +108,11 @@ namespace vehicle_rental
 
             // 4. Control එක උඩට ගන්න
             fleetDash.BringToFront();
+        }
+
+        private void guna2Button4_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
