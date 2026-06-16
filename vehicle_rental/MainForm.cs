@@ -10,16 +10,19 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 // Added for programmatic Charting
 using System.Windows.Forms.DataVisualization.Charting;
+
 using static Guna.UI2.Native.WinApi;
 
 namespace vehicle_rental
 {
     public partial class MainForm : Form
     {
+        private UC_VehicleFleetDashboard fleetDash = new UC_VehicleFleetDashboard();
         public MainForm()
         {
             InitializeComponent();
         }
+
 
         // Form එක මුලින්ම පූරණය වන විට (Load)
         private void MainForm_Load(object sender, EventArgs e)
@@ -35,11 +38,7 @@ namespace vehicle_rental
         // Dashboard Overview එක පූරණය කරන ක්‍රමය
         private void LoadDashboardUserControl()
         {
-            UC_DashboardOverview ucDashboard = new UC_DashboardOverview();
-            guna2CustomGradientPanel1.Controls.Clear();
-            ucDashboard.Dock = DockStyle.Fill;
-            guna2CustomGradientPanel1.Controls.Add(ucDashboard);
-            ucDashboard.BringToFront();
+           
         }
 
         // 🎯 [ඔබ ඇසිය යුතු ප්‍රධාන කොටස] - guna2Button1 ක්ලික් කළ විට ක්‍රියාත්මක වන කොටස
@@ -72,10 +71,7 @@ namespace vehicle_rental
 
         }
 
-        private void guna2Button1_Click(object sender, EventArgs e)
-        {
-            
-        }
+        
 
         private void guna2Button5_Click(object sender, EventArgs e)
         {
@@ -96,6 +92,11 @@ namespace vehicle_rental
 
         private void guna2Button2_Click(object sender, EventArgs e)
         {
+           
+        }
+
+        private void guna2Button6_Click(object sender, EventArgs e)
+        {
             MessageBox.Show("Clicked!");
             Reports___System_Tools fleetDash = new Reports___System_Tools();
 
@@ -109,6 +110,59 @@ namespace vehicle_rental
 
             // 4. Control එක උඩට ගන්න
             fleetDash.BringToFront();
+        }
+
+        private void guna2Button4_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Clicked!");
+            UC_DashboardOverview Dash = new UC_DashboardOverview();
+
+            // 2. පැනල් එකේ නම panelRight නම්, ඒකේ තියෙන පරණ ඒවා අයින් කරන්න
+            // (ඔයාගේ Design එකේ පැනල් එකේ Name එක හරියටම check කරගන්න)
+            panelRight.Controls.Clear();
+
+            // 3. UserControl එක පැනල් එකට Add කරන්න
+            Dash.Dock = DockStyle.Fill; // පැනල් එක පුරාවටම Control එක පේන්න
+            panelRight.Controls.Add(fleetDash);
+
+            // 4. Control එක උඩට ගන්න
+            Dash.BringToFront();
+        }
+
+        private void guna2Button2_Click_1(object sender, EventArgs e)
+        {
+        }
+
+        private void guna2Button1_Click_1(object sender, EventArgs e)
+        {
+            MessageBox.Show("Clicked!");
+            panelRight.Controls.Clear();
+
+            // 2. ඔයාගේ User Control එකේ Instance එකක් හදන්න
+            UCRental_Return uc = new UCRental_Return();
+
+            // 3. User Control එක පැනල් එකේ හැමතැනම පිරෙන විදිහට සෙට් කරන්න
+            uc.Dock = DockStyle.Fill;
+
+            // 4. පැනල් එකට Control එක එකතු කරන්න
+            panelRight.Controls.Add(uc);
+
+        }
+
+        private void guna2Button4_Click_1(object sender, EventArgs e)
+        {
+            MessageBox.Show("Clicked!");
+            panelRight.Controls.Clear();
+
+            // 2. ඔයාගේ User Control එකේ Instance එකක් හදන්න
+            UC_DashboardOverview ucd = new UC_DashboardOverview();
+
+            // 3. User Control එක පැනල් එකේ හැමතැනම පිරෙන විදිහට සෙට් කරන්න
+            ucd.Dock = DockStyle.Fill;
+
+            // 4. පැනල් එකට Control එක එකතු කරන්න
+            panelRight.Controls.Add(ucd);
+            
         }
     }
 }

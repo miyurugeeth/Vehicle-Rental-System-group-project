@@ -39,18 +39,18 @@
             // 
             // reports___System_Tools1
             // 
-            this.reports___System_Tools1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.reports___System_Tools1.Location = new System.Drawing.Point(83, 20);
+            this.reports___System_Tools1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(0)))), ((int)(((byte)(65)))));
+            this.reports___System_Tools1.Location = new System.Drawing.Point(135, 43);
             this.reports___System_Tools1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.reports___System_Tools1.Name = "reports___System_Tools1";
-            this.reports___System_Tools1.Size = new System.Drawing.Size(1147, 629);
+            this.reports___System_Tools1.Size = new System.Drawing.Size(1147, 671);
             this.reports___System_Tools1.TabIndex = 0;
             // 
             // test
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1397, 844);
+            this.ClientSize = new System.Drawing.Size(1397, 900);
             this.Controls.Add(this.reports___System_Tools1);
             this.Name = "test";
             this.Text = "test";
