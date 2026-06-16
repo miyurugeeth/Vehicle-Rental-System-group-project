@@ -100,7 +100,7 @@ namespace vehicle_rental
 
             // 2. පැනල් එකේ නම panelRight නම්, ඒකේ තියෙන පරණ ඒවා අයින් කරන්න
             // (ඔයාගේ Design එකේ පැනල් එකේ Name එක හරියටම check කරගන්න)
-            panelRight.Controls.Clear();
+            panelRi1ght.Controls.Clear();
 
             // 3. UserControl එක පැනල් එකට Add කරන්න
             fleetDash.Dock = DockStyle.Fill; // පැනල් එක පුරාවටම Control එක පේන්න
