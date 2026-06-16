@@ -18,10 +18,14 @@ namespace vehicle_rental
         public UC_PaymentsBilling()
         {
             InitializeComponent();
+            SetupCustomDashboardDesign();
         }
 
         private void UC_PaymentsBilling_Load(object sender, EventArgs e)
         {
+            // Allow DataGridView to display new columns
+            dgvPayments.AutoGenerateColumns = true;
+
             SetupCustomDashboardDesign();
             LoadPaymentData();
             CalculateSummaryValues();
@@ -29,41 +33,44 @@ namespace vehicle_rental
 
         private void SetupCustomDashboardDesign()
         {
-            this.BackColor = Color.FromArgb(35, 25, 50);
+            // Main background color (Deep Dark Purple)
+            this.BackColor = Color.FromArgb(24, 18, 36);
 
-            guna2Panel1.FillColor = Color.FromArgb(52, 40, 75);
-            guna2Panel1.BorderRadius = 15;
+            // Colors and styling for Cards (Flat & Clean)
+            guna2Panel1.FillColor = Color.FromArgb(42, 31, 64);
+            guna2Panel1.BorderRadius = 12;
+            guna2Panel1.BorderThickness = 0; // Remove dotted lines
 
-            guna2Panel2.FillColor = Color.FromArgb(52, 40, 75);
-            guna2Panel2.BorderRadius = 15;
+            guna2Panel2.FillColor = Color.FromArgb(42, 31, 64);
+            guna2Panel2.BorderRadius = 12;
+            guna2Panel2.BorderThickness = 0;
 
-            guna2Panel3.FillColor = Color.FromArgb(52, 40, 75);
-            guna2Panel3.BorderRadius = 15;
+            guna2Panel3.FillColor = Color.FromArgb(42, 31, 64);
+            guna2Panel3.BorderRadius = 12;
+            guna2Panel3.BorderThickness = 0;
 
-            dgvPayments.BackgroundColor = Color.FromArgb(40, 28, 58);
-            dgvPayments.GridColor = Color.FromArgb(55, 42, 78);
+            // DataGridView Styling
+            dgvPayments.BackgroundColor = Color.FromArgb(32, 24, 48);
+            dgvPayments.GridColor = Color.FromArgb(45, 34, 68);
             dgvPayments.BorderStyle = BorderStyle.None;
-            dgvPayments.EnableHeadersVisualStyles = false;
+            dgvPayments.RowTemplate.Height = 35; // Increase row spacing
 
-            dgvPayments.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(52, 40, 75);
-            dgvPayments.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
-            dgvPayments.ColumnHeadersDefaultCellStyle.Font = new Font("Arial", 10, FontStyle.Bold);
+            // Table Header Design
+            dgvPayments.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(56, 41, 84);
+            dgvPayments.ColumnHeadersDefaultCellStyle.ForeColor = Color.FromArgb(240, 240, 240);
+            dgvPayments.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 10, FontStyle.Bold);
 
-            dgvPayments.DefaultCellStyle.BackColor = Color.FromArgb(40, 28, 58);
+            // Table Rows Design
+            dgvPayments.DefaultCellStyle.BackColor = Color.FromArgb(32, 24, 48);
             dgvPayments.DefaultCellStyle.ForeColor = Color.White;
-            dgvPayments.DefaultCellStyle.SelectionBackColor = Color.FromArgb(65, 48, 90);
+            dgvPayments.DefaultCellStyle.SelectionBackColor = Color.FromArgb(84, 58, 133);
             dgvPayments.DefaultCellStyle.SelectionForeColor = Color.White;
-
-            guna2TextBox1.BackColor = Color.Transparent;
-            guna2TextBox1.FillColor = Color.FromArgb(48, 35, 65);
-            guna2TextBox1.ForeColor = Color.White;
         }
 
         private void LoadPaymentData()
         {
             try
             {
-                // Fixed column names according to your SQLite database schema
                 string query = "SELECT PaymentID AS [Payment ID], RentalID AS [Rental Ref], PaymentDate AS [Date & Time], Amount AS [Amount (LKR)], PaymentMethod AS [Payment Method], PaymentStatus AS [Status] FROM Payments";
 
                 dtPayments = DatabaseHelper.GetData(query);
@@ -109,15 +116,12 @@ namespace vehicle_rental
                 }
                 lblPending.ForeColor = Color.Orange;
 
-                // FIXED: We now explicitly force label4 to keep its correct title text
                 label4.Text = "Pending Balance";
 
                 string queryCount = "SELECT COUNT(PaymentID) FROM Payments WHERE date(PaymentDate) = date('now')";
                 DataTable dtCount = DatabaseHelper.GetData(queryCount);
                 if (dtCount != null && dtCount.Rows.Count > 0 && dtCount.Rows[0][0] != DBNull.Value)
                 {
-                    // Transaction Today count should go to the 3rd card's big number label. 
-                    // If your 3rd card's big number label has a different name, change 'label_TodayCount' to that name.
                     if (this.Controls.Find("label_TodayCount", true).Length > 0)
                     {
                         ((Label)this.Controls.Find("label_TodayCount", true)[0]).Text = dtCount.Rows[0][0].ToString();
@@ -130,51 +134,113 @@ namespace vehicle_rental
             }
         }
 
-        private void guna2TextBox1_TextChanged(object sender, EventArgs e)
-        {
-            if (dtPayments != null)
-            {
-                // Convert columns to string to allow the 'LIKE' filter to work with numbers without crashing
-                dtPayments.DefaultView.RowFilter = string.Format(
-                    "CONVERT([Payment ID], 'System.String') LIKE '%{0}%' OR CONVERT([Rental Ref], 'System.String') LIKE '%{0}%'",
-                    guna2TextBox1.Text
-                );
-            }
-        }
-
-        private void guna2Button2_Click(object sender, EventArgs e)
+        // Main method to bring data to the top of the Table based on the search term
+        private void txtSearchRentalRef_TextChanged(object sender, EventArgs e)
         {
             try
             {
-                string rentalID = guna2TextBox1.Text;
-                string currentDate = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
-
-                if (string.IsNullOrEmpty(rentalID) || rentalID == "Search Invoice or Rental ID...")
+                if (dtPayments != null)
                 {
-                    MessageBox.Show("Please enter a valid Rental ID in the text box!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
+                    string searchText = txtSearchRentalRef.Text.Trim();
+
+                    if (string.IsNullOrEmpty(searchText))
+                    {
+                        // If the search box is empty, display normally without any filtering or sorting
+                        dtPayments.DefaultView.RowFilter = string.Empty;
+                        dtPayments.DefaultView.Sort = string.Empty;
+                        dgvPayments.DataSource = dtPayments;
+                    }
+                    else
+                    {
+                        // 1. Set RowFilter to filter and bring up only the records that match the typed Rental Ref
+                        dtPayments.DefaultView.RowFilter = string.Format(
+                            "CONVERT([Rental Ref], 'System.String') LIKE '%{0}%'",
+                            searchText
+                        );
+
+                        // 2. Arrange the relevant data to automatically come to the top of the Table once found
+                        dtPayments.DefaultView.Sort = "[Rental Ref] ASC";
+
+                        // 3. Assign the prepared View to the Grid
+                        dgvPayments.DataSource = dtPayments.DefaultView;
+                    }
                 }
-
-                string query = $@"
-            PRAGMA foreign_keys = OFF;
-            INSERT INTO Payments (RentalID, Amount, PaymentDate, PaymentMethod, PaymentStatus) 
-            VALUES ({rentalID}, 25000, '{currentDate}', 'Cash', 'Completed');
-            PRAGMA foreign_keys = ON;";
-
-                DatabaseHelper.ExecuteNonQuery(query);
-
-                MessageBox.Show("Payment Processed Successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                guna2TextBox1.Clear();
-
-                LoadPaymentData();
-                CalculateSummaryValues();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error processing payment: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Search Error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        // Button to insert a new Payment
+        private void guna2Button2_Click(object sender, EventArgs e)
+        {
+            using (FrmNewPayment popup = new FrmNewPayment())
+            {
+                if (popup.ShowDialog() == DialogResult.OK)
+                {
+                    if (dtPayments == null)
+                    {
+                        LoadPaymentData();
+                    }
+
+                    if (dtPayments != null)
+                    {
+                        DataRow newRow = dtPayments.NewRow();
+
+                        // Set Payment ID to 0 without quotation marks since it must be a numeric value
+                        newRow["Payment ID"] = 0;
+                        newRow["Rental Ref"] = popup.CreatedRentalID;
+                        newRow["Date & Time"] = popup.CreatedDate;
+                        newRow["Amount (LKR)"] = popup.CreatedAmount;
+                        newRow["Payment Method"] = popup.CreatedMethod;
+                        newRow["Status"] = "Completed";
+
+                        dtPayments.Rows.Add(newRow);
+
+                        dgvPayments.DataSource = null;
+                        dgvPayments.DataSource = dtPayments;
+
+                        RecalculateSummaryFromGrid();
+                    }
+                }
+            }
+        }
+
+        private void RecalculateSummaryFromGrid()
+        {
+            try
+            {
+                double totalRevenue = 0;
+                double totalPending = 0;
+
+                foreach (DataRow row in dtPayments.Rows)
+                {
+                    if (row["Status"] != DBNull.Value && row["Amount (LKR)"] != DBNull.Value)
+                    {
+                        string status = row["Status"].ToString();
+                        double amt = Convert.ToDouble(row["Amount (LKR)"]);
+
+                        if (status == "Completed")
+                        {
+                            totalRevenue += amt;
+                        }
+                        else if (status == "Pending" || status == "Pending Balance")
+                        {
+                            totalPending += amt;
+                        }
+                    }
+                }
+
+                lblRevenue.Text = $"LKR {totalRevenue:N0}";
+                lblPending.Text = $"LKR {totalPending:N0}";
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Summary Update Error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
         private void lblRevenue_Click(object sender, EventArgs e) { }
         private void lblPending_Click(object sender, EventArgs e) { }
         private void guna2Panel2_Paint(object sender, PaintEventArgs e) { }
@@ -185,5 +251,10 @@ namespace vehicle_rental
         private void label1_Click(object sender, EventArgs e) { }
         private void label3_Click(object sender, EventArgs e) { }
         private void dgvPayments_CellContentClick(object sender, DataGridViewCellEventArgs e) { }
+
+        // Empty Event (Can be deleted if necessary)
+        private void txtSearchRentalRef_TextChanged_1(object sender, EventArgs e)
+        {
+        }
     }
 }

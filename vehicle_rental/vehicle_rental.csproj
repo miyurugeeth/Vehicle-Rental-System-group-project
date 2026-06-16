@@ -110,6 +110,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DatabaseHelper.cs" />
+    <Compile Include="FrmNewPayment.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmNewPayment.Designer.cs">
+      <DependentUpon>FrmNewPayment.cs</DependentUpon>
+    </Compile>
     <Compile Include="LogingForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -158,6 +164,9 @@
     <None Include="Resources\1081856-2001.png" />
     <None Include="Resources\1081856-200.png" />
     <None Include="Resources\car Image Jun 9, 2026, 06_39_03 PM.png" />
+    <EmbeddedResource Include="FrmNewPayment.resx">
+      <DependentUpon>FrmNewPayment.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="LogingForm.resx">
       <DependentUpon>LogingForm.cs</DependentUpon>
     </EmbeddedResource>
