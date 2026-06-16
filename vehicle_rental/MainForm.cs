@@ -45,7 +45,7 @@ namespace vehicle_rental
         private void guna2Button1_Click(object sender, EventArgs e)
         {
             // 1. අලුත් Vehicle Fleet Dashboard එකෙහි Object එකක් මතකය තුළ සාදා ගන්නවා
-            UC_VehicleFleetDashboard ucFleet = new UC_VehicleFleetDashboard();
+            UC_DashboardOverview ucFleet = new UC_DashboardOverview();
 
             // 2. පැනලයේ දැනට පවතින පැරණි User Control එක (DashboardOverview) සම්පූර්ණයෙන්ම ඉවත් කරයි
             guna2CustomGradientPanel1.Controls.Clear();
