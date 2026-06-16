@@ -45,7 +45,7 @@ namespace vehicle_rental
         private void guna2Button1_Click(object sender, EventArgs e)
         {
             // 1. අලුත් Vehicle Fleet Dashboard එකෙහි Object එකක් මතකය තුළ සාදා ගන්නවා
-            UC_VehicleFleetDashboard ucFleet = new UC_VehicleFleetDashboard();
+            UC_DashboardOverview ucFleet = new UC_DashboardOverview();
 
             // 2. පැනලයේ දැනට පවතින පැරණි User Control එක (DashboardOverview) සම්පූර්ණයෙන්ම ඉවත් කරයි
             guna2CustomGradientPanel1.Controls.Clear();
@@ -110,6 +110,29 @@ namespace vehicle_rental
 
             // 4. Control එක උඩට ගන්න
             fleetDash.BringToFront();
+        }
+
+        private void guna2Button4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void guna2Button1_Click_1(object sender, EventArgs e)
+        {
+            MessageBox.Show("Clicked!");
+            UC_DashboardOverview fleetDash = new UC_DashboardOverview();
+
+            // 2. පැනල් එකේ නම panelRight නම්, ඒකේ තියෙන පරණ ඒවා අයින් කරන්න
+            // (ඔයාගේ Design එකේ පැනල් එකේ Name එක හරියටම check කරගන්න)
+            panelRight.Controls.Clear();
+
+            // 3. UserControl එක පැනල් එකට Add කරන්න
+            fleetDash.Dock = DockStyle.Fill; // පැනල් එක පුරාවටම Control එක පේන්න
+            panelRight.Controls.Add(fleetDash);
+
+            // 4. Control එක උඩට ගන්න
+            fleetDash.BringToFront();
+            
         }
 
         private void guna2Button4_Click(object sender, EventArgs e)
