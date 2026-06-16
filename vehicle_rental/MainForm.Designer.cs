@@ -173,6 +173,7 @@
             this.guna2Button1.Size = new System.Drawing.Size(192, 45);
             this.guna2Button1.TabIndex = 1;
             this.guna2Button1.Text = "guna2Button1";
+            this.guna2Button1.Click += new System.EventHandler(this.guna2Button1_Click_1);
             // 
             // pictureBox1
             // 

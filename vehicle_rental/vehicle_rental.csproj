@@ -150,6 +150,12 @@
     <Compile Include="test.Designer.cs">
       <DependentUpon>test.cs</DependentUpon>
     </Compile>
+    <Compile Include="UC_DashboardOverview.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UC_DashboardOverview.Designer.cs">
+      <DependentUpon>UC_DashboardOverview.cs</DependentUpon>
+    </Compile>
     <Compile Include="UC_VehicleFleetDashboard.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -197,6 +203,7 @@
     <EmbeddedResource Include="test.resx">
       <DependentUpon>test.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UC_DashboardOverview.resx" />
     <EmbeddedResource Include="UC_VehicleFleetDashboard.resx">
       <DependentUpon>UC_VehicleFleetDashboard.cs</DependentUpon>
     </EmbeddedResource>

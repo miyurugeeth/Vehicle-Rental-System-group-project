@@ -35,7 +35,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Name = "UCdashboardoverview";
-            this.Size = new System.Drawing.Size(739, 528);
+            this.Size = new System.Drawing.Size(885, 609);
             this.ResumeLayout(false);
 
         }
