@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Data;
 using System.Data.SqlClient;
 using System.Data.SQLite;
@@ -162,24 +162,28 @@ namespace vehicle_rental
         }
 
         // E. Fetch Top 5 Recent Rental Transactions for Dashboard View
-            // The total number of vehicles currently rented out is subtracted from the remaining number of vehicles.
-        
+        // The total number of vehicles currently rented out is subtracted from the remaining number of vehicles.
+
 
         // Get count of vehicles currently in maintenance
         public static int GetVehiclesInMaintenanceCount()
         {
             int count = 0;
-            using (SqlConnection conn = new SqlConnection(connectionString))
+            string query = "SELECT COUNT(*) FROM Vehicles WHERE Status = 'Maintenance'";
+            using (SQLiteConnection con = GetConnection())
             {
-                string query = @"SELECT COUNT(*) FROM Vehicles 
-                        WHERE Status = 'Maintenance' 
-                        OR Status = 'In Repair' 
-                        OR Status = 'Under Service'";
-
-                using (SqlCommand cmd = new SqlCommand(query, conn))
+                try
                 {
-                    conn.Open();
-                    count = Convert.ToInt32(cmd.ExecuteScalar());
+                    con.Open();
+                    using (SQLiteCommand cmd = new SQLiteCommand(query, con))
+                    {
+                        count = Convert.ToInt32(cmd.ExecuteScalar());
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Dashboard Error (Maintenance): " + ex.Message, "Error",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             return count;
@@ -189,16 +193,24 @@ namespace vehicle_rental
         public static int GetPendingReturnsCount()
         {
             int count = 0;
-            using (SqlConnection conn = new SqlConnection(connectionString))
+            // SQLite වල GETDATE() නෑ — date('now') use කරනවා
+            string query = @"SELECT COUNT(*) FROM Rentals 
+                     WHERE Status = 'Active' 
+                     AND date(ExpectedReturnDate) = date('now')";
+            using (SQLiteConnection con = GetConnection())
             {
-                string query = @"SELECT COUNT(*) FROM Rentals 
-                        WHERE Status = 'Active' 
-                        AND CAST(ReturnDate AS DATE) = CAST(GETDATE() AS DATE)";
-
-                using (SqlCommand cmd = new SqlCommand(query, conn))
+                try
                 {
-                    conn.Open();
-                    count = Convert.ToInt32(cmd.ExecuteScalar());
+                    con.Open();
+                    using (SQLiteCommand cmd = new SQLiteCommand(query, con))
+                    {
+                        count = Convert.ToInt32(cmd.ExecuteScalar());
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Dashboard Error (Pending Returns): " + ex.Message, "Error",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             return count;
@@ -208,30 +220,26 @@ namespace vehicle_rental
 
         public static DataTable GetRecentTransactions()
         {
-            DataTable dt = new DataTable();
+            string query = @"
+    SELECT 
+        r.RentalID,
+        c.Name AS CustomerName,
+        v.VehicleNo,
+        r.ExpectedReturnDate AS ReturnDate,
+        CASE 
+            WHEN (r.ActualReturnDate IS NULL OR r.ActualReturnDate = '')
+                 AND date(r.ExpectedReturnDate) = date('now') THEN 'Due Today'
+            WHEN (r.ActualReturnDate IS NULL OR r.ActualReturnDate = '') THEN 'Active'
+            ELSE 'Returned'
+        END AS Status
+    FROM Rentals r
+    INNER JOIN Customers c ON r.CustomerID = c.CustomerID
+    INNER JOIN Vehicles v ON r.VehicleID = v.VehicleID
+    WHERE r.ActualReturnDate IS NULL OR r.ActualReturnDate = ''
+    ORDER BY r.RentalID DESC
+    LIMIT 10";
 
-         
-
-            using (SQLiteConnection con = GetConnection())
-            {
-                try
-                {
-                    con.Open();
-                    string query = null;
-                    using (SQLiteCommand cmd = new SQLiteCommand(query, con))
-                    {
-                        using (SQLiteDataAdapter da = new SQLiteDataAdapter(cmd))
-                        {
-                            da.Fill(dt);
-                        }
-                    }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Dashboard Error (Recent Transactions): " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
-            return dt;
+            return ExecuteQuery(query, null);
         }
 
         // F. Legacy Support Method to Fetch DataTable Using Custom Row Queries
@@ -276,5 +284,43 @@ namespace vehicle_rental
             string query = "SELECT Status, COUNT(*) as Count FROM Vehicles GROUP BY Status";
             return ExecuteQuery(query, null);
         }
-    }
+    
+    public static DataTable GetAllCustomers()
+{
+            string query = @"SELECT 
+        'CUST-' || printf('%03d', CustomerID) AS DisplayID,
+        CustomerID,
+        Name,
+        NIC,
+        LicenseNo,
+        Phone,
+        Address,
+        COALESCE(Status, 'Active') AS Status,
+        CAST(RegisteredDate AS TEXT) AS RegisteredDate
+    FROM Customers 
+    ORDER BY CustomerID DESC";
+            return ExecuteQuery(query, null);
+        }
+
+public static DataTable SearchCustomers(string searchText)
+{
+    string query = @"SELECT 
+        'CUST-' || printf('%03d', CustomerID) AS DisplayID,
+        CustomerID,
+        Name,
+        NIC,
+        LicenseNo,
+        Phone,
+        COALESCE(Status, 'Active') AS Status
+    FROM Customers 
+    WHERE Name LIKE @search 
+       OR NIC LIKE @search 
+       OR LicenseNo LIKE @search
+    ORDER BY CustomerID DESC";
+
+    SQLiteParameter[] parameters = {
+        new SQLiteParameter("@search", "%" + searchText + "%")
+    };
+    return ExecuteQuery(query, parameters);
 }
+}}

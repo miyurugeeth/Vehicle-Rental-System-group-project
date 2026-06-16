@@ -44,7 +44,7 @@ INNER JOIN Vehicles V ON R.VehicleID = V.VehicleID";
         }
         private void AddActionColumn()
         {
-            // ActionColumn kiyala aluth column ekak hadanawa
+            // make ActionColumn 
             if (dgv.Columns["ActionColumn"] == null)
             {
                 DataGridViewButtonColumn btn = new DataGridViewButtonColumn();

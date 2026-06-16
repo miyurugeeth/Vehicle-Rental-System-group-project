@@ -39,6 +39,9 @@
             this.label5 = new System.Windows.Forms.Label();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.pnlRentalInput = new Guna.UI2.WinForms.Guna2CustomGradientPanel();
+            this.label2 = new System.Windows.Forms.Label();
+            this.txtAmount = new Guna.UI2.WinForms.Guna2TextBox();
+            this.dtpRentDate = new Guna.UI2.WinForms.Guna2DateTimePicker();
             this.cmbVehicle = new Guna.UI2.WinForms.Guna2ComboBox();
             this.custcmb = new Guna.UI2.WinForms.Guna2ComboBox();
             this.label6 = new System.Windows.Forms.Label();
@@ -47,19 +50,15 @@
             this.btnSave = new Guna.UI2.WinForms.Guna2Button();
             this.btnCancel = new Guna.UI2.WinForms.Guna2Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnAddNewVehicle = new Guna.UI2.WinForms.Guna2Button();
             this.txtSearch = new Guna.UI2.WinForms.Guna2TextBox();
-            this.dtpRentDate = new Guna.UI2.WinForms.Guna2DateTimePicker();
-            this.txtAmount = new Guna.UI2.WinForms.Guna2TextBox();
             this.guna2ContextMenuStrip1 = new Guna.UI2.WinForms.Guna2ContextMenuStrip();
-            this.label2 = new System.Windows.Forms.Label();
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).BeginInit();
             this.Panel_Grid.SuspendLayout();
             this.panel1.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.pnlRentalInput.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // dgv
@@ -96,7 +95,7 @@
             this.dgv.RowHeadersVisible = false;
             this.dgv.RowHeadersWidth = 51;
             this.dgv.RowTemplate.Height = 24;
-            this.dgv.Size = new System.Drawing.Size(1284, 377);
+            this.dgv.Size = new System.Drawing.Size(1531, 518);
             this.dgv.TabIndex = 0;
             this.dgv.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White;
             this.dgv.ThemeStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(182)))), ((int)(((byte)(170)))), ((int)(((byte)(255)))));
@@ -116,7 +115,7 @@
             this.Panel_Grid.Location = new System.Drawing.Point(3, 297);
             this.Panel_Grid.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Panel_Grid.Name = "Panel_Grid";
-            this.Panel_Grid.Size = new System.Drawing.Size(1299, 350);
+            this.Panel_Grid.Size = new System.Drawing.Size(1534, 518);
             this.Panel_Grid.TabIndex = 1;
             // 
             // dtpReturnDate
@@ -129,7 +128,7 @@
             this.dtpReturnDate.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.dtpReturnDate.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
             this.dtpReturnDate.Format = System.Windows.Forms.DateTimePickerFormat.Long;
-            this.dtpReturnDate.Location = new System.Drawing.Point(972, 81);
+            this.dtpReturnDate.Location = new System.Drawing.Point(1176, 82);
             this.dtpReturnDate.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dtpReturnDate.MaxDate = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
             this.dtpReturnDate.MinDate = new System.DateTime(1753, 1, 1, 0, 0, 0, 0);
@@ -155,14 +154,12 @@
             this.panel1.BackColor = System.Drawing.Color.White;
             this.panel1.Controls.Add(this.label5);
             this.panel1.Controls.Add(this.flowLayoutPanel1);
-            this.panel1.Controls.Add(this.pictureBox1);
             this.panel1.Controls.Add(this.btnAddNewVehicle);
             this.panel1.Controls.Add(this.txtSearch);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1299, 1048);
+            this.panel1.Size = new System.Drawing.Size(1549, 1048);
             this.panel1.TabIndex = 2;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
@@ -170,7 +167,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Lucida Sans Unicode", 18F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(94, 15);
+            this.label5.Location = new System.Drawing.Point(12, 18);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(414, 37);
             this.label5.TabIndex = 4;
@@ -185,7 +182,7 @@
             this.flowLayoutPanel1.Location = new System.Drawing.Point(9, 94);
             this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(1287, 842);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(1543, 842);
             this.flowLayoutPanel1.TabIndex = 3;
             this.flowLayoutPanel1.Paint += new System.Windows.Forms.PaintEventHandler(this.flowLayoutPanel1_Paint);
             // 
@@ -205,16 +202,69 @@
             this.pnlRentalInput.Controls.Add(this.btnSave);
             this.pnlRentalInput.Controls.Add(this.btnCancel);
             this.pnlRentalInput.Controls.Add(this.label1);
-            this.pnlRentalInput.Dock = System.Windows.Forms.DockStyle.Right;
             this.pnlRentalInput.FillColor = System.Drawing.Color.DarkOrchid;
             this.pnlRentalInput.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
             this.pnlRentalInput.Location = new System.Drawing.Point(3, 2);
             this.pnlRentalInput.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pnlRentalInput.Name = "pnlRentalInput";
-            this.pnlRentalInput.Size = new System.Drawing.Size(1299, 291);
+            this.pnlRentalInput.Size = new System.Drawing.Size(1534, 291);
             this.pnlRentalInput.TabIndex = 0;
             this.pnlRentalInput.Visible = false;
             this.pnlRentalInput.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlRentalInput_Paint);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.Color.Transparent;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(819, 48);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(70, 18);
+            this.label2.TabIndex = 29;
+            this.label2.Text = "RentDate";
+            // 
+            // txtAmount
+            // 
+            this.txtAmount.AutoRoundedCorners = true;
+            this.txtAmount.BackColor = System.Drawing.Color.Transparent;
+            this.txtAmount.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtAmount.DefaultText = "";
+            this.txtAmount.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.txtAmount.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.txtAmount.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txtAmount.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txtAmount.FillColor = System.Drawing.Color.WhiteSmoke;
+            this.txtAmount.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txtAmount.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.txtAmount.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.txtAmount.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txtAmount.Location = new System.Drawing.Point(5, 170);
+            this.txtAmount.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtAmount.Name = "txtAmount";
+            this.txtAmount.PlaceholderText = "0.00";
+            this.txtAmount.SelectedText = "";
+            this.txtAmount.Size = new System.Drawing.Size(326, 41);
+            this.txtAmount.TabIndex = 28;
+            // 
+            // dtpRentDate
+            // 
+            this.dtpRentDate.AutoRoundedCorners = true;
+            this.dtpRentDate.BackColor = System.Drawing.Color.Transparent;
+            this.dtpRentDate.BorderRadius = 17;
+            this.dtpRentDate.Checked = true;
+            this.dtpRentDate.FillColor = System.Drawing.SystemColors.ControlLightLight;
+            this.dtpRentDate.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.dtpRentDate.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.dtpRentDate.Format = System.Windows.Forms.DateTimePickerFormat.Long;
+            this.dtpRentDate.Location = new System.Drawing.Point(783, 82);
+            this.dtpRentDate.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.dtpRentDate.MaxDate = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
+            this.dtpRentDate.MinDate = new System.DateTime(1753, 1, 1, 0, 0, 0, 0);
+            this.dtpRentDate.Name = "dtpRentDate";
+            this.dtpRentDate.Size = new System.Drawing.Size(316, 36);
+            this.dtpRentDate.TabIndex = 27;
+            this.dtpRentDate.Value = new System.DateTime(2026, 6, 7, 3, 21, 49, 937);
+            this.dtpRentDate.ValueChanged += new System.EventHandler(this.dtpRentDate_ValueChanged);
             // 
             // cmbVehicle
             // 
@@ -235,7 +285,7 @@
             "Diesel",
             "Hybrid",
             "Electric"});
-            this.cmbVehicle.Location = new System.Drawing.Point(329, 82);
+            this.cmbVehicle.Location = new System.Drawing.Point(398, 82);
             this.cmbVehicle.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cmbVehicle.Name = "cmbVehicle";
             this.cmbVehicle.Size = new System.Drawing.Size(315, 36);
@@ -279,7 +329,7 @@
             this.label4.AutoSize = true;
             this.label4.BackColor = System.Drawing.Color.Transparent;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(342, 48);
+            this.label4.Location = new System.Drawing.Point(411, 48);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(82, 18);
             this.label4.TabIndex = 13;
@@ -290,7 +340,7 @@
             this.label3.AutoSize = true;
             this.label3.BackColor = System.Drawing.Color.Transparent;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(975, 58);
+            this.label3.Location = new System.Drawing.Point(1179, 59);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(87, 18);
             this.label3.TabIndex = 12;
@@ -312,7 +362,7 @@
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(228, 48);
             this.btnSave.TabIndex = 10;
-            this.btnSave.Text = "Save Vehicle";
+            this.btnSave.Text = "Save";
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // btnCancel
@@ -347,17 +397,6 @@
             this.label1.Text = "Rental & Return Processing";
             this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::vehicle_rental.Properties.Resources.download__1_;
-            this.pictureBox1.Location = new System.Drawing.Point(9, 4);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(66, 62);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 3;
-            this.pictureBox1.TabStop = false;
-            // 
             // btnAddNewVehicle
             // 
             this.btnAddNewVehicle.AutoRoundedCorners = true;
@@ -369,7 +408,7 @@
             this.btnAddNewVehicle.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(182)))), ((int)(((byte)(150)))), ((int)(((byte)(255)))));
             this.btnAddNewVehicle.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAddNewVehicle.ForeColor = System.Drawing.Color.Black;
-            this.btnAddNewVehicle.Location = new System.Drawing.Point(970, 15);
+            this.btnAddNewVehicle.Location = new System.Drawing.Point(1165, 18);
             this.btnAddNewVehicle.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnAddNewVehicle.Name = "btnAddNewVehicle";
             this.btnAddNewVehicle.Size = new System.Drawing.Size(228, 48);
@@ -394,7 +433,7 @@
             this.txtSearch.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.txtSearch.ForeColor = System.Drawing.Color.Black;
             this.txtSearch.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtSearch.Location = new System.Drawing.Point(591, 17);
+            this.txtSearch.Location = new System.Drawing.Point(717, 18);
             this.txtSearch.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.PlaceholderForeColor = System.Drawing.Color.DimGray;
@@ -403,49 +442,6 @@
             this.txtSearch.Size = new System.Drawing.Size(360, 48);
             this.txtSearch.TabIndex = 0;
             this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
-            // 
-            // dtpRentDate
-            // 
-            this.dtpRentDate.AutoRoundedCorners = true;
-            this.dtpRentDate.BackColor = System.Drawing.Color.Transparent;
-            this.dtpRentDate.BorderRadius = 17;
-            this.dtpRentDate.Checked = true;
-            this.dtpRentDate.FillColor = System.Drawing.SystemColors.ControlLightLight;
-            this.dtpRentDate.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.dtpRentDate.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.dtpRentDate.Format = System.Windows.Forms.DateTimePickerFormat.Long;
-            this.dtpRentDate.Location = new System.Drawing.Point(650, 82);
-            this.dtpRentDate.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.dtpRentDate.MaxDate = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
-            this.dtpRentDate.MinDate = new System.DateTime(1753, 1, 1, 0, 0, 0, 0);
-            this.dtpRentDate.Name = "dtpRentDate";
-            this.dtpRentDate.Size = new System.Drawing.Size(316, 36);
-            this.dtpRentDate.TabIndex = 27;
-            this.dtpRentDate.Value = new System.DateTime(2026, 6, 7, 3, 21, 49, 937);
-            this.dtpRentDate.ValueChanged += new System.EventHandler(this.dtpRentDate_ValueChanged);
-            // 
-            // txtAmount
-            // 
-            this.txtAmount.AutoRoundedCorners = true;
-            this.txtAmount.BackColor = System.Drawing.Color.Transparent;
-            this.txtAmount.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtAmount.DefaultText = "";
-            this.txtAmount.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.txtAmount.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.txtAmount.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txtAmount.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txtAmount.FillColor = System.Drawing.Color.WhiteSmoke;
-            this.txtAmount.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtAmount.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.txtAmount.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.txtAmount.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtAmount.Location = new System.Drawing.Point(5, 170);
-            this.txtAmount.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.txtAmount.Name = "txtAmount";
-            this.txtAmount.PlaceholderText = "0.00";
-            this.txtAmount.SelectedText = "";
-            this.txtAmount.Size = new System.Drawing.Size(326, 41);
-            this.txtAmount.TabIndex = 28;
             // 
             // guna2ContextMenuStrip1
             // 
@@ -462,24 +458,13 @@
             this.guna2ContextMenuStrip1.RenderStyle.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
             this.guna2ContextMenuStrip1.Size = new System.Drawing.Size(61, 4);
             // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.BackColor = System.Drawing.Color.Transparent;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(686, 48);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(70, 18);
-            this.label2.TabIndex = 29;
-            this.label2.Text = "RentDate";
-            // 
             // UCRental_Return
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.panel1);
             this.Name = "UCRental_Return";
-            this.Size = new System.Drawing.Size(1299, 1048);
+            this.Size = new System.Drawing.Size(1552, 1048);
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).EndInit();
             this.Panel_Grid.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
@@ -487,7 +472,6 @@
             this.flowLayoutPanel1.ResumeLayout(false);
             this.pnlRentalInput.ResumeLayout(false);
             this.pnlRentalInput.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -508,7 +492,6 @@
         private Guna.UI2.WinForms.Guna2Button btnSave;
         private Guna.UI2.WinForms.Guna2Button btnCancel;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.PictureBox pictureBox1;
         private Guna.UI2.WinForms.Guna2Button btnAddNewVehicle;
         private Guna.UI2.WinForms.Guna2TextBox txtSearch;
         private Guna.UI2.WinForms.Guna2ComboBox cmbVehicle;
@@ -517,5 +500,6 @@
         private Guna.UI2.WinForms.Guna2TextBox txtAmount;
         private Guna.UI2.WinForms.Guna2ContextMenuStrip guna2ContextMenuStrip1;
         private System.Windows.Forms.Label label2;
+        private System.ComponentModel.BackgroundWorker backgroundWorker1;
     }
 }
