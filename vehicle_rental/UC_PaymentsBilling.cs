@@ -23,7 +23,7 @@ namespace vehicle_rental
 
         private void UC_PaymentsBilling_Load(object sender, EventArgs e)
         {
-            // Allow DataGridView to display new columns
+            // Allow DataGridView to display new columns 
             dgvPayments.AutoGenerateColumns = true;
 
             SetupCustomDashboardDesign();
@@ -234,7 +234,7 @@ namespace vehicle_rental
             {
                 if (popup.ShowDialog() == DialogResult.OK)
                 {
-                    // ✅ DB එකෙන් fresh reload
+                    // fresh reload
                     LoadPaymentData();
                     CalculateSummaryValues();
                 }
