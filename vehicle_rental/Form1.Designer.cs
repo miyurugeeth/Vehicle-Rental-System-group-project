@@ -1,6 +1,6 @@
 ﻿namespace vehicle_rental
 {
-    partial class test2
+    partial class Form1
     {
         /// <summary>
         /// Required designer variable.
@@ -30,13 +30,13 @@
         {
             this.SuspendLayout();
             // 
-            // test2
+            // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1344, 851);
-            this.Name = "test2";
-            this.Text = "test2";
+            this.ClientSize = new System.Drawing.Size(1047, 664);
+            this.Name = "Form1";
+            this.Text = "Form1";
             this.ResumeLayout(false);
 
         }

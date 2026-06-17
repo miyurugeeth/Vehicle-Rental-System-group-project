@@ -8,7 +8,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-// Added for programmatic Charting
 using System.Windows.Forms.DataVisualization.Charting;
 
 using static Guna.UI2.Native.WinApi;
@@ -24,41 +23,41 @@ namespace vehicle_rental
         }
 
 
-        // Form එක මුලින්ම පූරණය වන විට (Load)
         private void MainForm_Load(object sender, EventArgs e)
         {
-            // 🎯 [කේතයෙන්ම පැනලය සෙට් කිරීම] 
-            // Form එක Maximize වන විට guna2CustomGradientPanel1 එකත් Form එක පුරාම ලස්සනට ලොකු වෙන්න Dock එක Fill කරනවා
+            LoadDashboardUserControl();
+
             guna2CustomGradientPanel1.Dock = DockStyle.Fill;
 
-            // මුලින්ම Dashboard Overview එක පෙන්වයි
-            LoadDashboardUserControl();
+
+
         }
 
-        // Dashboard Overview එක පූරණය කරන ක්‍රමය
         private void LoadDashboardUserControl()
         {
-           
+            UC_DashboardOverview dashboard = new UC_DashboardOverview();
+
+            panelRight.Controls.Clear();
+
+            dashboard.Dock = DockStyle.Fill;
+
+            panelRight.Controls.Add(dashboard);
         }
 
-        // 🎯 [ඔබ ඇසිය යුතු ප්‍රධාන කොටස] - guna2Button1 ක්ලික් කළ විට ක්‍රියාත්මක වන කොටස
         private void guna2Button1_Click(object sender, EventArgs e)
         {
-            // 1. අලුත් Vehicle Fleet Dashboard එකෙහි Object එකක් මතකය තුළ සාදා ගන්නවා
-            UC_DashboardOverview ucFleet = new UC_DashboardOverview();
+            UC_VehicleFleetDashboard ucFleet = new UC_VehicleFleetDashboard();
 
-            // 2. පැනලයේ දැනට පවතින පැරණි User Control එක (DashboardOverview) සම්පූර්ණයෙන්ම ඉවත් කරයි
             guna2CustomGradientPanel1.Controls.Clear();
 
-            // 3. අලුත් කන්ට්‍රෝල් එක පැනලයේ ප්‍රමාණයටම හැඩගැසීමට DockStyle.Fill ලබා දෙයි
             ucFleet.Dock = DockStyle.Fill;
 
-            // 4. අලුත් කන්ට්‍රෝල් එක පැනලය ඇතුළට එකතු කර ඉදිරියටම රැගෙන එයි
+
             guna2CustomGradientPanel1.Controls.Add(ucFleet);
             ucFleet.BringToFront();
         }
 
-        // --- හිස් ඉවෙන්ට් ප්ලේස්හෝල්ඩර්ස් (Design View බිඳ වැටීම වැළැක්වීමට පමණි) ---
+
         private void uC_DashboardOverview1_Load(object sender, EventArgs e) { }
         private void label5_Click(object sender, EventArgs e) { }
         private void label6_Click(object sender, EventArgs e) { }
@@ -71,98 +70,121 @@ namespace vehicle_rental
 
         }
 
-        
+
 
         private void guna2Button5_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Clicked!");
+            
+
             UC_VehicleFleetDashboard fleetDash = new UC_VehicleFleetDashboard();
 
-            // 2. පැනල් එකේ නම panelRight නම්, ඒකේ තියෙන පරණ ඒවා අයින් කරන්න
-            // (ඔයාගේ Design එකේ පැනල් එකේ Name එක හරියටම check කරගන්න)
+            // Clear any existing controls from the panel
+            // (Make sure the panel name matches the one used in your Designer)
             panelRight.Controls.Clear();
 
-            // 3. UserControl එක පැනල් එකට Add කරන්න
-            fleetDash.Dock = DockStyle.Fill; // පැනල් එක පුරාවටම Control එක පේන්න
+            // Add the UserControl to the panel
+            fleetDash.Dock = DockStyle.Fill; // Display the UserControl across the entire panel
             panelRight.Controls.Add(fleetDash);
 
-            // 4. Control එක උඩට ගන්න
+            // Bring the UserControl to the front
             fleetDash.BringToFront();
         }
 
         private void guna2Button2_Click(object sender, EventArgs e)
         {
-           
+
         }
 
         private void guna2Button6_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Clicked!");
+           
             Reports___System_Tools fleetDash = new Reports___System_Tools();
 
-            // 2. පැනල් එකේ නම panelRight නම්, ඒකේ තියෙන පරණ ඒවා අයින් කරන්න
-            // (ඔයාගේ Design එකේ පැනල් එකේ Name එක හරියටම check කරගන්න)
+
             panelRight.Controls.Clear();
 
-            // 3. UserControl එක පැනල් එකට Add කරන්න
-            fleetDash.Dock = DockStyle.Fill; // පැනල් එක පුරාවටම Control එක පේන්න
+
+            fleetDash.Dock = DockStyle.Fill;
             panelRight.Controls.Add(fleetDash);
 
-            // 4. Control එක උඩට ගන්න
+
             fleetDash.BringToFront();
         }
 
         private void guna2Button4_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Clicked!");
-            UC_DashboardOverview Dash = new UC_DashboardOverview();
 
-            // 2. පැනල් එකේ නම panelRight නම්, ඒකේ තියෙන පරණ ඒවා අයින් කරන්න
-            // (ඔයාගේ Design එකේ පැනල් එකේ Name එක හරියටම check කරගන්න)
-            panelRight.Controls.Clear();
-
-            // 3. UserControl එක පැනල් එකට Add කරන්න
-            Dash.Dock = DockStyle.Fill; // පැනල් එක පුරාවටම Control එක පේන්න
-            panelRight.Controls.Add(fleetDash);
-
-            // 4. Control එක උඩට ගන්න
-            Dash.BringToFront();
         }
 
         private void guna2Button2_Click_1(object sender, EventArgs e)
         {
+
+          
+            UC_Customer fleetDash = new UC_Customer();
+
+
+            panelRight.Controls.Clear();
+
+
+            fleetDash.Dock = DockStyle.Fill;
+            panelRight.Controls.Add(fleetDash);
+
+
+            fleetDash.BringToFront();
+
         }
 
         private void guna2Button1_Click_1(object sender, EventArgs e)
         {
-            MessageBox.Show("Clicked!");
+           
             panelRight.Controls.Clear();
 
-            // 2. ඔයාගේ User Control එකේ Instance එකක් හදන්න
             UCRental_Return uc = new UCRental_Return();
 
-            // 3. User Control එක පැනල් එකේ හැමතැනම පිරෙන විදිහට සෙට් කරන්න
+
             uc.Dock = DockStyle.Fill;
 
-            // 4. පැනල් එකට Control එක එකතු කරන්න
+
             panelRight.Controls.Add(uc);
 
         }
 
         private void guna2Button4_Click_1(object sender, EventArgs e)
         {
-            MessageBox.Show("Clicked!");
+        
             panelRight.Controls.Clear();
 
-            // 2. ඔයාගේ User Control එකේ Instance එකක් හදන්න
+
             UC_DashboardOverview ucd = new UC_DashboardOverview();
 
-            // 3. User Control එක පැනල් එකේ හැමතැනම පිරෙන විදිහට සෙට් කරන්න
+
             ucd.Dock = DockStyle.Fill;
 
-            // 4. පැනල් එකට Control එක එකතු කරන්න
+
             panelRight.Controls.Add(ucd);
-            
+
+        }
+
+        private void panelRight_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void guna2Button7_Click(object sender, EventArgs e)
+        {
+            DialogResult confirm = MessageBox.Show(
+        "Do you want to log out?", "Confirm Log Out",
+        MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (confirm == DialogResult.Yes)
+            {
+                // Login form  open
+                LoginForm loginForm = new LoginForm();
+                loginForm.Show();
+
+                // Current  close 
+                this.Close();
+            }
         }
     }
 }
