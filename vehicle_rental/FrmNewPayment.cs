@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SQLite;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,39 @@ namespace vehicle_rental
             InitializeComponent();
         }
 
+        // 🎨 Form එක Load වෙද්දීම කලින් පසුබිම් වර්ණ සහ අකුරු කළු පාටට හැදීම
+        private void FrmNewPayment_Load(object sender, EventArgs e)
+        {
+            // 1. Form එකේ පසුබිම අර ලස්සන කලින් ලා පර්පල් පාටටම හැදුවා
+            this.BackColor = Color.FromArgb(182, 170, 255);
+
+            // 2. Rental ID TextBox එකේ මෝස්තරය (පසුබිම සුදු සහ අකුරු කළු)
+            this.txtRentalID.BackColor = Color.White;
+            this.txtRentalID.ForeColor = Color.Black;
+            this.txtRentalID.FocusedState.ForeColor = Color.Black;
+
+            // 3. Amount TextBox එකේ මෝස්තරය (පසුබිම සුදු සහ අකුරු කළු)
+            this.txtAmount.BackColor = Color.White;
+            this.txtAmount.ForeColor = Color.Black;
+            this.txtAmount.FocusedState.ForeColor = Color.Black;
+
+            // 4. Payment Method ComboBox එකේ මෝස්තරය (පසුබිම සුදු සහ අකුරු කළු)
+            this.cmbMethod.BackColor = Color.Transparent; // Guna UI එකක් නම් Transparent දාන්න ඕනේ
+            this.cmbMethod.FillColor = Color.White;
+            this.cmbMethod.ForeColor = Color.Black;
+
+            // 5. Labels (අයිතම වල නම්) ලස්සනට තද පර්පල් හෝ කළු කරමු පසුබිමට මැච් වෙන්න
+            // (ඔයාගේ ඩිසයිනර් එකේ තියෙන labels වල names මේවා නම් ඔටෝම හැදෙනවා)
+            foreach (Control ctrl in this.Controls)
+            {
+                if (ctrl is Label)
+                {
+                    ctrl.ForeColor = Color.FromArgb(43, 4, 85); // තද වයලට්/කළු පාටක්
+                    ctrl.BackColor = Color.Transparent;
+                }
+            }
+        }
+
         private void btnPay_Click(object sender, EventArgs e)
         {
             try
@@ -32,31 +66,45 @@ namespace vehicle_rental
                 string method = cmbMethod.Text.Trim();
                 string currentDate = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
 
-                // Check if all details have been filled out
                 if (string.IsNullOrEmpty(rentalID) || string.IsNullOrEmpty(amountInput) || string.IsNullOrEmpty(method))
                 {
                     MessageBox.Show("Please fill in all the details correctly!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
-                // Check if the Amount is numeric (to prevent application crashing)
                 if (!double.TryParse(amountInput, out double amount))
                 {
+                   
                     MessageBox.Show("Please enter a valid numeric amount!", "Invalid Amount", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
-                // --- All SQL Validation and UPDATE parts have been removed from here ---
+                // ✅ DB එකට insert කරනවා
+                string insertQuery = "INSERT INTO Payments (RentalID, PaymentDate, Amount, PaymentMethod, PaymentStatus) VALUES (@RentalID, @Date, @Amount, @Method, 'Completed')";
 
-                // Assign the data to Properties (to be retrieved by UC_PaymentsBilling)
+                SQLiteParameter[] parameters = {
+                    new SQLiteParameter("@RentalID", rentalID),
+                    new SQLiteParameter("@Date", currentDate),
+                    new SQLiteParameter("@Amount", amount),
+                    new SQLiteParameter("@Method", method)
+                };
+
+                int result = DatabaseHelper.ExecuteNonQuery(insertQuery, parameters);
+
+                if (result <= 0)
+                {
+                    MessageBox.Show("Payment could not be saved!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                // ✅ UC_PaymentsBilling එකට data pass කරනවා
                 CreatedRentalID = rentalID;
                 CreatedAmount = amount;
                 CreatedMethod = method;
                 CreatedDate = currentDate;
 
-                MessageBox.Show("Payment Added to List Successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                this.DialogResult = DialogResult.OK; // Notify the first Form that the operation was successful
+                MessageBox.Show("Payment Saved Successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                this.DialogResult = DialogResult.OK;
                 this.Close();
             }
             catch (Exception ex)

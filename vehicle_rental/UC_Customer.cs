@@ -310,7 +310,8 @@ namespace vehicle_rental
                 }
                 else
                 {
-                    MessageBox.Show("Delete failed. Try again..", "Error",
+                    MessageBox.Show("Delete failed. Try again." +
+                        ".", "Error",
                         MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
 
@@ -358,6 +359,11 @@ namespace vehicle_rental
 
             if (dgvCustomers.Columns["CustomerID"] != null)
                 dgvCustomers.Columns["CustomerID"].Visible = false;
+        }
+
+        private void Panel_Form_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }
