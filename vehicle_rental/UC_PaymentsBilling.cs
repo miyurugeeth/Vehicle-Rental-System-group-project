@@ -23,7 +23,7 @@ namespace vehicle_rental
 
         private void UC_PaymentsBilling_Load(object sender, EventArgs e)
         {
-            // Allow DataGridView to display new columns
+            // Allow DataGridView to display new columns 
             dgvPayments.AutoGenerateColumns = true;
 
             SetupCustomDashboardDesign();
@@ -33,38 +33,93 @@ namespace vehicle_rental
 
         private void SetupCustomDashboardDesign()
         {
-            // Main background color (Deep Dark Purple)
-            this.BackColor = Color.FromArgb(24, 18, 36);
+            this.label2.ForeColor = Color.Black;
+          
+            this.label2.Font = new Font("Segoe UI", 14, FontStyle.Bold | FontStyle.Underline);
+          
+          
+         
+            // Set grid location further down (Y=260) and adjust the size
+            this.dgvPayments.Location = new System.Drawing.Point(25, 260);
+            this.dgvPayments.Size = new System.Drawing.Size(1150, 390);
 
-            // Colors and styling for Cards (Flat & Clean)
-            guna2Panel1.FillColor = Color.FromArgb(42, 31, 64);
-            guna2Panel1.BorderRadius = 12;
-            guna2Panel1.BorderThickness = 0; // Remove dotted lines
+            // Stretch table columns to fill the entire width of the Grid
+            this.dgvPayments.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
 
-            guna2Panel2.FillColor = Color.FromArgb(42, 31, 64);
-            guna2Panel2.BorderRadius = 12;
-            guna2Panel2.BorderThickness = 0;
+            // Main background color of the User Control
+            this.BackColor = Color.MediumPurple;
 
-            guna2Panel3.FillColor = Color.FromArgb(42, 31, 64);
-            guna2Panel3.BorderRadius = 12;
-            guna2Panel3.BorderThickness = 0;
+            // Card 01 - Revenue 
+            this.guna2Panel1.FillColor = Color.FromArgb(163, 10, 209);
+            this.guna2Panel1.BorderRadius = 12;
+            this.guna2Panel1.BorderThickness = 0;
 
-            // DataGridView Styling
-            dgvPayments.BackgroundColor = Color.FromArgb(32, 24, 48);
-            dgvPayments.GridColor = Color.FromArgb(45, 34, 68);
-            dgvPayments.BorderStyle = BorderStyle.None;
-            dgvPayments.RowTemplate.Height = 35; // Increase row spacing
+            // Card 02 - Pending Balance
+            this.guna2Panel2.FillColor = Color.FromArgb(163, 10, 209);
+            this.guna2Panel2.BorderRadius = 12;
+            this.guna2Panel2.BorderThickness = 0;
 
-            // Table Header Design
-            dgvPayments.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(56, 41, 84);
-            dgvPayments.ColumnHeadersDefaultCellStyle.ForeColor = Color.FromArgb(240, 240, 240);
-            dgvPayments.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 10, FontStyle.Bold);
+            // Card 03 - Transaction Today
+            this.guna2Panel3.FillColor = Color.FromArgb(163, 10, 209);
+            this.guna2Panel3.BorderRadius = 12;
+            this.guna2Panel3.BorderThickness = 0;
 
-            // Table Rows Design
-            dgvPayments.DefaultCellStyle.BackColor = Color.FromArgb(32, 24, 48);
-            dgvPayments.DefaultCellStyle.ForeColor = Color.White;
-            dgvPayments.DefaultCellStyle.SelectionBackColor = Color.FromArgb(84, 58, 133);
-            dgvPayments.DefaultCellStyle.SelectionForeColor = Color.White;
+           
+            // Set the background color of all labels inside the cards to transparent to remove black backgrounds
+            foreach (Control card in new Control[] { this.guna2Panel1, this.guna2Panel2, this.guna2Panel3 })
+            {
+                foreach (Control ctrl in card.Controls)
+                {
+                    if (ctrl is Label)
+                    {
+                        ctrl.BackColor = Color.Transparent;
+                    }
+                }
+            }
+
+            // Position and style the Search TextBox on the top right
+            this.txtSearchRentalRef.Location = new System.Drawing.Point(520, 15);
+            this.txtSearchRentalRef.Size = new System.Drawing.Size(320, 40);
+            this.txtSearchRentalRef.AutoRoundedCorners = true;
+            this.txtSearchRentalRef.FillColor = Color.SlateBlue;
+            this.txtSearchRentalRef.ForeColor = Color.White;
+            this.txtSearchRentalRef.BorderThickness = 0;
+            this.txtSearchRentalRef.PlaceholderText = "Search Rental Ref what you want see...";
+            this.txtSearchRentalRef.PlaceholderForeColor = Color.FromArgb(193, 200, 207);
+
+            // Position and style the Process New Payment Button at the far right edge
+            this.guna2Button2.Location = new System.Drawing.Point(860, 15);
+            this.guna2Button2.Size = new System.Drawing.Size(220, 40);
+            this.guna2Button2.AutoRoundedCorners = true;
+            this.guna2Button2.FillColor = Color.FromArgb(0, 120, 215); // Corporate Blue color
+            this.guna2Button2.ForeColor = Color.White;
+            this.guna2Button2.Font = new Font("Segoe UI", 9, FontStyle.Bold);
+            this.guna2Button2.Text = "+ Process New Payment";
+
+          
+            // Grid background and border styling (White background for a clean look)
+            this.dgvPayments.BackgroundColor = Color.White;
+            this.dgvPayments.GridColor = Color.FromArgb(224, 224, 224); // Light grey grid lines
+            this.dgvPayments.BorderStyle = BorderStyle.None;
+            this.dgvPayments.RowTemplate.Height = 35; // Increase row spacing
+
+            // Table Header Design (Blue background with white bold text)
+            this.dgvPayments.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(0, 120, 215);
+            this.dgvPayments.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+            this.dgvPayments.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 10, FontStyle.Bold);
+            this.dgvPayments.EnableHeadersVisualStyles = false; // Force custom header styling
+
+            // Table Rows Design (White background with black text)
+            this.dgvPayments.DefaultCellStyle.BackColor = Color.White;
+            this.dgvPayments.DefaultCellStyle.ForeColor = Color.Black;
+
+            // Highlight color when a row is selected (Light blue background with black text)
+            this.dgvPayments.DefaultCellStyle.SelectionBackColor = Color.FromArgb(215, 235, 255);
+            this.dgvPayments.DefaultCellStyle.SelectionForeColor = Color.Black;
+
+            // Alternate row styling for Guna UI Grid (White background with black text)
+            this.dgvPayments.AlternatingRowsDefaultCellStyle.BackColor = Color.White;
+            this.dgvPayments.AlternatingRowsDefaultCellStyle.ForeColor = Color.Black;
         }
 
         private void LoadPaymentData()
@@ -73,7 +128,7 @@ namespace vehicle_rental
             {
                 string query = "SELECT PaymentID AS [Payment ID], RentalID AS [Rental Ref], PaymentDate AS [Date & Time], Amount AS [Amount (LKR)], PaymentMethod AS [Payment Method], PaymentStatus AS [Status] FROM Payments";
 
-                dtPayments = DatabaseHelper.GetData(query);
+                dtPayments = DatabaseHelper.ExecuteQuery(query);
 
                 if (dtPayments != null)
                 {
@@ -91,7 +146,7 @@ namespace vehicle_rental
             try
             {
                 string queryRev = "SELECT SUM(Amount) FROM Payments WHERE PaymentStatus='Completed'";
-                DataTable dtRev = DatabaseHelper.GetData(queryRev);
+                DataTable dtRev = DatabaseHelper.ExecuteQuery(queryRev);
                 if (dtRev != null && dtRev.Rows.Count > 0 && dtRev.Rows[0][0] != DBNull.Value)
                 {
                     double rev = Convert.ToDouble(dtRev.Rows[0][0]);
@@ -104,7 +159,7 @@ namespace vehicle_rental
                 lblRevenue.ForeColor = Color.LimeGreen;
 
                 string queryPend = "SELECT SUM(Amount) FROM Payments WHERE PaymentStatus='Pending' OR PaymentStatus='Pending Balance'";
-                DataTable dtPend = DatabaseHelper.GetData(queryPend);
+                DataTable dtPend = DatabaseHelper.ExecuteQuery(queryPend);
                 if (dtPend != null && dtPend.Rows.Count > 0 && dtPend.Rows[0][0] != DBNull.Value)
                 {
                     double pend = Convert.ToDouble(dtPend.Rows[0][0]);
@@ -119,7 +174,7 @@ namespace vehicle_rental
                 label4.Text = "Pending Balance";
 
                 string queryCount = "SELECT COUNT(PaymentID) FROM Payments WHERE date(PaymentDate) = date('now')";
-                DataTable dtCount = DatabaseHelper.GetData(queryCount);
+                DataTable dtCount = DatabaseHelper.ExecuteQuery(queryCount);
                 if (dtCount != null && dtCount.Rows.Count > 0 && dtCount.Rows[0][0] != DBNull.Value)
                 {
                     if (this.Controls.Find("label_TodayCount", true).Length > 0)
@@ -179,30 +234,9 @@ namespace vehicle_rental
             {
                 if (popup.ShowDialog() == DialogResult.OK)
                 {
-                    if (dtPayments == null)
-                    {
-                        LoadPaymentData();
-                    }
-
-                    if (dtPayments != null)
-                    {
-                        DataRow newRow = dtPayments.NewRow();
-
-                        // Set Payment ID to 0 without quotation marks since it must be a numeric value
-                        newRow["Payment ID"] = 0;
-                        newRow["Rental Ref"] = popup.CreatedRentalID;
-                        newRow["Date & Time"] = popup.CreatedDate;
-                        newRow["Amount (LKR)"] = popup.CreatedAmount;
-                        newRow["Payment Method"] = popup.CreatedMethod;
-                        newRow["Status"] = "Completed";
-
-                        dtPayments.Rows.Add(newRow);
-
-                        dgvPayments.DataSource = null;
-                        dgvPayments.DataSource = dtPayments;
-
-                        RecalculateSummaryFromGrid();
-                    }
+                    // fresh reload
+                    LoadPaymentData();
+                    CalculateSummaryValues();
                 }
             }
         }
@@ -256,5 +290,7 @@ namespace vehicle_rental
         private void txtSearchRentalRef_TextChanged_1(object sender, EventArgs e)
         {
         }
+
+      
     }
 }

@@ -186,5 +186,20 @@ namespace vehicle_rental
                 this.Close();
             }
         }
+
+        private void guna2Button3_Click(object sender, EventArgs e)
+        {
+            panelRight.Controls.Clear();
+
+
+
+            UC_PaymentsBilling billing = new UC_PaymentsBilling();
+
+
+            billing.Dock = DockStyle.Fill;
+
+
+            panelRight.Controls.Add(billing);
+        }
     }
 }
